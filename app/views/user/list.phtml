@@ -1,0 +1,27 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="box">
+      
+      <div class="box-header">
+        <h3 class="box-title"></h3>
+        <?PHP 
+		if(($this->session->get('auth') != NULL) && ($this->session->get('auth')['user_type'] == 1))
+        {
+			echo $this->tag->linkTo(
+            array("Users/".$form."/", 
+                  "{$button_title}", 
+                  "class" => "btn btn-success pull-right")
+            );
+		}			
+        ?>        
+      </div><!-- /.box-header -->
+      
+      <div class="box-body">
+        <table id="document-users-table" class="table table-bordered table-striped">                   
+        </table>
+      </div><!-- /.box-body -->
+
+    </div><!-- /.box -->
+
+  </div>
+</div>

@@ -1,0 +1,154 @@
+<div class="box box-primary">
+  <div class="box-header with-border">
+    <h3 class="box-title">Add Meeting Details</h3>
+  </div><!-- /.box-header -->
+
+  <?= $this->tag->form(array("item/meeting/".$id, "method"=>"post", "enctype"=>"multipart/form-data")) ?>
+   <input type="hidden" id="extrakeywords" name="extrakeywords" value="">
+ <input type="hidden" id="keywords_counter" name="keywords_counter" value="<?PHP echo sizeof($keywords); ?>"/>
+
+   <input type="hidden" id="extralanguages" name="extralanguages" value="">
+   <input type="hidden" id="languages_counter" name="languages_counter" value="<?PHP echo sizeof($languages); ?>"/>
+ <div class="box-body">
+
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input type="text" name="title" class="form-control" id="titleInput" placeholder="Meeting Title">
+    </div>
+    <div class="form-group">
+      <label for="meetingNumber">Contribution Author</label>
+      <input type="text" name="author" class="form-control" id="authorInput" placeholder="Author" value="<?PHP echo $this->session->get('auth')['user_type'];?>" readonly>
+    </div>
+  <div class="input_fields_wrap">
+  <?PHP
+  for($i = 0; $i<= sizeof($keywords)-1; $i ++ )
+  { ?>
+  <div>
+    <div id="keywordsInput<?PHP echo $i;?>" data_id="<?PHP echo $i;?>" class="form-group">
+      <label for="keywords" class="col-sm-2 control-label">Subject Keywords </label>
+      <div class="col-sm-6">
+        <div class="control-group">
+        <div class="controls">
+        <div class="input-prepend input-group col-sm-8">
+        <input type="text" id="keywordsInputText[]" readonly class="form-control input-prepend existingkeywords" name="keywords" placeholder="Document Keywords"  value="<?PHP echo $keywords[$i];?>"/>
+        </div>
+      </div>
+    </div>
+  </div>
+  <i class="fa  btn btn-danger remove_existing_keyword"  data_id="<?PHP echo $i;?>"><span class="glyphicon glyphicon-trash"></span> Delete</i></div></div>
+  <?PHP }?>
+    </div>
+  <i id="addMore" class='addMore fa fa-credit-card btn btn-success'>Add New Keyword</i>
+  <div class="form-group">
+      <label for="title">Treaty</label>
+
+      <select id = "treatyInput" class = "form-control select2" name = 'treaty'>
+        <?= $treaties_select; ?>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="title">Description</label>
+    <textarea name="description" class="form-control" rows="3" placeholder="Description ..."> <?PHP echo $description;?></textarea>
+    </div>
+    <div class="form-group">
+      <label for="title">Url</label>
+      <input type="text" name="url" class="form-control" id="urlInput" placeholder="Url"  value="<?PHP echo $url;?>">
+    </div>
+    <div class="form-group">
+      <label>Meeting Dates:</label>
+        <div class="input-group">
+          <div class="input-group-addon">
+            <i class="fa fa-calendar"></i>
+          </div>
+        <input type="text" class="form-control pull-right" id="meeting-dates" name="meeting-dates"  value="<?PHP echo $meeting_dates;?>">
+      </div><!-- /.input group -->
+    </div><!-- /.form group -->
+
+    <div class="form-group">
+      <label for="title">Repetition</label>
+      <select name = "repetition" class = "form-control select2">
+        <?= $repetition_select; ?>
+      </select>
+    </div>
+  <div class="form-group">
+      <label for="title">Kind</label>
+      <select name = "kind" class = "form-control select2">
+        <?= $kinds_select; ?>
+      </select>
+    </div>
+    <div class="languages_fields_wrap">
+  <?PHP
+  for($i = 0; $i<= sizeof($languages)-1; $i ++ )
+  { ?>
+    <div>
+      <div id="languagesInput<?PHP echo $i;?>" data_id="<?PHP echo $i;?>" class="form-group">
+        <label for="languages" class="col-sm-2 control-label">Languages </label>
+        <div class="col-sm-6">
+          <div class="control-group">
+          <div class="controls">
+          <div class="input-prepend input-group col-sm-8">
+          <input type="text" id="languagesInputText[]" readonly class="form-control input-prepend existinglanguages" name="languages" placeholder="Languages"  value="<?PHP echo $languages[$i];?>"/>
+          </div>
+        </div>
+      </div>
+    </div>
+    <i class="fa  btn btn-danger remove_existing_language"  data_id="<?PHP echo $i;?>"><span class="glyphicon glyphicon-trash"></span> Delete</i></div></div>
+    <?PHP }?>
+  </div>
+  <i id="addMoreLanguage" class='addMore fa fa-credit-card btn btn-success'>Add New Language</i>
+  </div><div class="form-group">
+      <label for="title">Document Type</label>
+      <select name = "document_type" class = "form-control select2">
+          <?= $types_select; ?>
+      </select>
+    </div>
+  <div class="form-group">
+      <label for="title">Rights</label>
+      <select name = "rights" class = "form-control select2">
+          <?= $rights_select; ?>
+      </select>
+    </div>
+    <div class="form-group"
+      <label for="title">Status</label>
+      <select name = "status" class = "form-control select2">
+          <?= $status_select; ?>
+      </select>
+    </div>
+  <div class="form-group">
+      <label for="title">Image Url</label>
+      <input type="text" name="imageurl" class="form-control" id="imageurlInput" placeholder="Image Url"  value="<?PHP echo $imageurl;?>">
+    </div>
+  <div class="form-group">
+      <label for="title">Image Copyright</label>
+      <input type="text" name="imagecopyright" class="form-control" id="ImagecopyrightInput" placeholder="Image Copyright"  value="<?PHP echo $imagecopyright;?>">
+    </div>
+    <div class="form-group">
+      <label for="title">Location</label>
+      <input type="text" name="location" class="form-control" id="LocationInput" placeholder="Location"  value="<?PHP echo $location;?>">
+    </div>
+  <div class="form-group">
+      <label for="title">City</label>
+      <input type="text" name="city" class="form-control" id="CityInput" placeholder="City"  value="<?PHP echo $city;?>">
+    </div>
+  <div class="form-group">
+      <label for="title">Country</label>
+      <select name = "country" class = "form-control select2">
+          <?= $countries_select; ?>
+      </select>
+    </div>
+  <div class="form-group">
+      <label for="title">Latitude</label>
+      <input type="text" name="latitude" class="form-control" id="LatitudeInput" placeholder="Latitude"  value="<?PHP echo $latitude;?>">
+    </div>
+  <div class="form-group">
+      <label for="title">Longitude</label>
+      <input type="text" name="longitude" class="form-control" id="LongitudeInput" placeholder="Longitude"  value="<?PHP echo $longitude;?>">
+    </div>
+
+  </div><!-- /.box-body -->
+
+  <div class="box-footer">
+    <button type="submit" class="btn btn-primary">Save</button>
+  </div>
+  </form>
+</div><!-- /.box -->

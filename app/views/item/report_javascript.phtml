@@ -1,0 +1,259 @@
+
+<script type="text/javascript">
+   $('.select2').select2();
+	$(function() {
+    $('#date_issued').daterangepicker({
+        singleDatePicker: true,
+        showDropdowns: true
+    });
+});
+	function addkeywords(keyword)
+	{
+		$('#extrakeywords').val($('#extrakeywords').val() + keyword.value+','); 
+	}  
+	function addlanguages(language)
+	{
+		$('#extralanguages').val($('#extralanguages').val() + language.value+','); 
+	} 
+	function addtreaties(treaty)
+	{
+		$('#extratreaties').val($('#extratreaties').val() + treaty.value+','); 
+	}  
+	function addcountries(country)
+	{
+		$('#extracountries').val($('#extracountries').val() + country.value+','); 
+	} 
+	$(function () {
+        
+		var max_fields      = 40; //maximum input boxes allowed
+		var wrapper         = $(".input_fields_wrap"); //Fields wrapper
+		var languagewrapper         = $(".languages_fields_wrap"); //Fields wrapper
+		var treatywrapper         = $(".treaty_fields_wrap"); //Fields wrapper
+		var countrywrapper         = $(".country_fields_wrap"); //Fields wrapper
+		var reportwrapper         = $(".report_required_fields_wrap"); //Fields wrapper
+		
+		var counter = <?PHP echo sizeof($keywords) ;?>+1;
+		var counterlanguage = <?PHP echo sizeof($languages) ;?>+1;
+		
+		$("#addMore").on('click',function(e){
+			e.preventDefault();
+			if(counter < max_fields)
+			{
+				counter ++;
+				$(wrapper).append('<div><div id="keywordsInput' + (counter) + '" data_id="' + (counter) + '" class="form-group"><label for="keywords" class="col-sm-2 control-label">Subject Keywords </label><div class="col-sm-6"><div class="control-group"><div class="controls"><div class="input-prepend input-group col-sm-8"><input type="text" id="keywords[]" class="form-control input-prepend keywords" name="exkeywords[]" placeholder="Subject Keywords" onchange="addkeywords(this)"/></div></div></div></div><i class="fa  btn btn-danger remove_keyword" data_id="' + (counter) + '"><span class="glyphicon glyphicon-trash"></span> Delete</i></div></div>');
+				
+			}
+			
+			$("#keywords_counter").val(counter);
+		});
+		
+		$(wrapper).on("click",".remove_existing_keyword", function(e){ //user click on remove text
+			e.preventDefault(); 
+			var selected_id = $(this).attr('data_id'); 
+			$('#keywordsInput'+selected_id).remove(); 
+			var existingkeywords = $('#existingkeywords').val();
+			var existingkeywordsarr = existingkeywords.split(","); 
+			 
+			existingkeywordsarr.splice(selected_id);
+			$("#existingkeywords").val("");
+			var newkeyword= "";
+			$('.existingkeywords').each(function()
+			{
+				newkeyword += $(this).val()+',';	
+			}); 
+			$('#existingkeywords').val(newkeyword); 
+		});
+		 
+
+		$(wrapper).on("click",".remove_keyword", function(e){ //user click on remove text
+			e.preventDefault(); 
+			var selected_id = $(this).attr('data_id');
+			counter--; 
+ 
+			$('#keywordsInput'+selected_id).remove(); 
+			var extrakeywords = $('#extrakeywords').val();
+			var extrakeywordsarr = extrakeywords.split(","); 
+			 
+			extrakeywordsarr.splice(selected_id);
+			$("#extrakeywords").val("");
+			var newkeyword= "";
+			$('.keywords').each(function()
+			{
+				newkeyword += $(this).val()+',';	
+			});
+			$('#extrakeywords').val(newkeyword);  
+
+			$("#keywords_counter").val(counter);
+		});
+		
+		
+		$("#addMoreLanguage").on('click',function(e){
+			e.preventDefault();
+			if(counterlanguage < max_fields)
+			{
+				counterlanguage ++;
+				$(languagewrapper).append('<div><div id="languagesInput' + (counterlanguage) + '" data_id="' + (counterlanguage) + '" class="form-group"><label for="languages" class="col-sm-2 control-label">Languages </label><div class="col-sm-6"><div class="control-group"><div class="controls"><div class="input-prepend input-group col-sm-8"><input type="text" id="languages[]" class="form-control input-prepend languages" name="exlanguages[]" placeholder="Subject Languages" onchange="addlanguages(this)"/></div></div></div></div><i class="fa  btn btn-danger remove_language" data_id="' + (counterlanguage) + '"><span class="glyphicon glyphicon-trash"></span> Delete</i></div></div>');
+				
+			}
+			
+			$("#languages_counter").val(counterlanguage);
+		});
+		
+		
+		 
+
+	  
+		$(languagewrapper).on("click",".remove_existing_language", function(e){ //user click on remove text
+			e.preventDefault(); 
+			var selected_id = $(this).attr('data_id');
+			$('#languagesInput'+selected_id).remove(); 
+			// $("div" ).remove('#languagesInput'+selected_id);
+			var existinglanguages = $('#existinglanguages').val();
+			var existinglanguagesarr = existinglanguages.split(","); 
+			 
+			existinglanguagesarr.splice(selected_id);
+			$("#existinglanguages").val("");
+			var newlanguage= "";
+			$('.existinglanguages').each(function()
+			{
+				 newlanguage += $(this).val()+',';	
+			}); 
+			$('#existinglanguages').val(newlanguage); 
+		});
+		
+		$(languagewrapper).on("click",".remove_language", function(e){ //user click on remove text
+	  	e.preventDefault(); 
+		var selected_id = $(this).attr('data_id');
+	  	counterlanguage--; 
+		
+		$( "div" ).remove('#languagesInput'+selected_id);
+		var extralanguages = $('#extralanguages').val();
+		var extralanguagesarr = extralanguages.split(","); 
+		 
+		extralanguagesarr.splice(selected_id);
+		$("#extralanguages").val("");
+		var newlanguage= "";
+		$('.languages').each(function()
+		{
+			newlanguage += $(this).val()+',';	
+		});
+		$('#extralanguages').val(newlanguage);  
+
+	  	$("#languages_counter").val(counterlanguage);
+	  });
+		
+     
+		
+		var countertreaty = <?PHP echo sizeof($treaties) ;?>+1;
+		var countercountry = <?PHP echo sizeof($countries) ;?>+1;
+		
+		$("#addMoreTreaty").on('click',function(e){
+			e.preventDefault();
+			if(countertreaty < max_fields)
+			{
+				countertreaty ++;
+				$(treatywrapper).append('<div><div id="treatiesInput' + (countertreaty) + '" data_id="' + (countertreaty) + '" class="form-group"><label for="treaties" class="col-sm-2 control-label">Treaty </label><div class="col-sm-6"><div class="control-group"><div class="controls"><div class="input-prepend input-group col-sm-8"><input type="text" id="treaties[]" class="form-control input-prepend treaties" name="extreaties[]" placeholder="Treaty" onchange="addtreaties(this)"/></div></div></div></div><i class="fa  btn btn-danger remove_treaty" data_id="' + (countertreaty) + '"><span class="glyphicon glyphicon-trash"></span> Delete</i></div></div>');
+				
+			}
+			
+			$("#treaties_counter").val(countertreaty);
+		});
+		
+		$(treatywrapper).on("click",".remove_existing_treaty", function(e){ //user click on remove text
+			e.preventDefault(); 
+			var selected_id = $(this).attr('data_id'); 
+			$('#treatiesInput'+selected_id).remove(); 
+			var existingtreaties = $('#existingtreaties').val();
+			var existingtreatiesarr = existingtreaties.split(","); 
+			 
+			existingtreatiesarr.splice(selected_id);
+			$("#existingtreaties").val("");
+			var newtreaty= "";
+			$('.existingtreaties').each(function()
+			{
+				newtreaty += $(this).val()+',';	
+			}); 
+			$('#existingtreaties').val(newtreaty); 
+		});
+		 
+
+		$(treatywrapper).on("click",".remove_treaty", function(e){ //user click on remove text
+			e.preventDefault(); 
+			var selected_id = $(this).attr('data_id');
+			countertreaty--; 
+ 
+			$('#treatiesInput'+selected_id).remove(); 
+			var extratreaties = $('#extratreaties').val();
+			var extratreatiesarr = extratreaties.split(","); 
+			 
+			extratreatiesarr.splice(selected_id);
+			$("#extratreaties").val("");
+			var newtreaty= "";
+			$('.treaties').each(function()
+			{
+				newtreaty += $(this).val()+',';	
+			});
+			$('#extratreaties').val(newtreaty);  
+
+			$("#treaties_counter").val(countertreaty);
+		});
+		
+		
+		$("#addMoreCountry").on('click',function(e){
+			e.preventDefault();
+			if(countercountry < max_fields)
+			{
+				countercountry ++;
+				$(countrywrapper).append('<div><div id="countriesInput' + (countercountry) + '" data_id="' + (countercountry) + '" class="form-group"><label for="countries" class="col-sm-2 control-label">Country </label><div class="col-sm-6"><div class="control-group"><div class="controls"><div class="input-prepend input-group col-sm-8"><input type="text" id="countries[]" class="form-control input-prepend countries" name="excountries[]" placeholder="Country" onchange="addcountries(this)"/></div></div></div></div><i class="fa  btn btn-danger remove_country" data_id="' + (countercountry) + '"><span class="glyphicon glyphicon-trash"></span> Delete</i></div></div>');
+				
+			}
+			
+			$("#countries_counter").val(countercountry);
+		});
+		
+		
+		 
+
+	  
+		$(countrywrapper).on("click",".remove_existing_country", function(e){ //user click on remove text
+			e.preventDefault(); 
+			var selected_id = $(this).attr('data_id');
+			$('#countriesInput'+selected_id).remove(); 
+			// $("div" ).remove('#countriesInput'+selected_id);
+			var existingcountries = $('#existingcountries').val();
+			var existingcountriesarr = existingcountries.split(","); 
+			 
+			existingcountriesarr.splice(selected_id);
+			$("#existingcountries").val("");
+			var newcountry= "";
+			$('.existingcountries').each(function()
+			{
+				 newcountry += $(this).val()+',';	
+			}); 
+			$('#existingcountries').val(newcountry); 
+		});
+		
+		$(countrywrapper).on("click",".remove_country", function(e){ //user click on remove text
+	  	e.preventDefault(); 
+		var selected_id = $(this).attr('data_id');
+	  	countercountry--; 
+		
+		$( "div" ).remove('#countriesInput'+selected_id);
+		var extracountries = $('#extracountries').val();
+		var extracountriesarr = extracountries.split(","); 
+		 
+		extracountriesarr.splice(selected_id);
+		$("#extracountries").val("");
+		var newcountry= "";
+		$('.countries').each(function()
+		{
+			newcountry += $(this).val()+',';	
+		});
+		$('#extracountries').val(newcountry);  
+
+	  	$("#countries_counter").val(countercountry);
+	  });
+		
+    });
+
+</script> 

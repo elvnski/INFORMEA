@@ -1,0 +1,107 @@
+<div class="box box-primary">
+  <div class="box-header with-border">
+    <h3 class="box-title">Edit Meeting Details</h3>
+  </div><!-- /.box-header -->                
+  
+  <?= $this->tag->form(array("item/editcontact/".$itemID, "method"=>"post", "enctype"=>"multipart/form-data")) ?>
+   <input type="hidden" name="itemID" value="<?PHP echo $itemID;?>" />
+   
+  <?PHP //print_r($data);
+	foreach($values->metadata as $d)
+	{
+		//print "$d->key< - >";                
+		//print "$d->value";
+		//print "<br/>";  
+		if($d->key == 'dc.contributor.author'){$author = $d->value;}
+		if($d->key == 'dc.title'){$title = $d->value;}
+		if($d->key == 'informea.identifier.treaty'){$treaty = $d->value;}
+		if($d->key == 'informea.contact.country'){$country = $d->value;}
+		if($d->key == 'informea.contact.prefix'){$prefix = $d->value;}		
+		if($d->key == 'informea.contact.firstname'){$firstname = $d->value;}
+		if($d->key == 'informea.contact.lastname'){$lastname = $d->value;}
+		if($d->key == 'informea.contact.type'){$type = $d->value;}		
+		if($d->key == 'informea.contact.position'){$position = $d->value;}
+		if($d->key == 'informea.contact.organizations'){$organizations = $d->value;}
+		if($d->key == 'informea.contact.department'){$department = $d->value;}
+		if($d->key == 'informea.contact.location'){$location = $d->value;}
+		if($d->key == 'informea.contact.email'){$email = $d->value;}
+		if($d->key == 'informea.contact.phone'){$phone = $d->value;}
+		if($d->key == 'informea.contact.fax'){$fax = $d->value;}
+		if($d->key == 'informea.contact.status'){$status = $d->value;}		
+	}
+  ?>
+  <div class="box-body">  
+    
+    <div class="form-group">
+      <label for="meetingNumber">Contribution Author</label>
+      <input type="text" name="author" class="form-control" id="authorInput" placeholder="Author" value="<?PHP echo $author;?>">
+    </div>	    
+	<div class="form-group">
+      <label for="title">First Name</label>
+      <input type="text" name="firstname" class="form-control" id="firstnameInput" placeholder="First Name"  value="<?PHP echo $firstname;?>">
+    </div>
+	<div class="form-group">
+      <label for="title">Last Name</label>
+      <input type="text" name="lastname" class="form-control" id="lastnameInput" placeholder="Last Name"  value="<?PHP echo $lastname;?>">
+    </div>
+	<div class="form-group">
+      <label for="title">Title</label>
+      <input type="text" name="title" class="form-control" id="titleInput" placeholder="Meeting Title" value="<?PHP echo $title;?>">
+    </div>
+	<div class="form-group">
+      <label for="title">Treaty</label>
+      <input type="text" name="treaty" class="form-control" id="treatyInput" placeholder="Treaty"  value="<?PHP echo $treaty;?>">
+    </div>
+	<div class="form-group">
+      <label for="title">Country</label>
+      <input type="text" name="country" class="form-control" id="CountryInput" placeholder="Country"  value="<?PHP echo $country;?>">
+    </div>
+    <div class="form-group">
+      <label for="title">Prefix</label>
+      <input type="text" name="prefix" class="form-control" id="PrefixInput" placeholder="Prefix"  value="<?PHP echo $prefix;?>">
+    </div>
+	<div class="form-group">
+      <label for="title">Type</label>
+      <input type="text" name="type" class="form-control" id="TypeInput" placeholder="Type" value="<?PHP echo $type;?>">
+    </div>		
+    <div class="form-group">
+      <label for="title">Position</label>
+      <input type="text" name="position" class="form-control" id="PositionInput" placeholder="Position"  value="<?PHP echo $position;?>">
+    </div>
+	<div class="form-group">
+      <label for="title">Organizations</label>
+      <input type="text" name="organizations" class="form-control" id="OrganizationsInput" placeholder="Organizations"  value="<?PHP echo $organizations;?>">
+    </div>    
+	<div class="form-group">
+      <label for="title">Department</label>
+      <input type="text" name="department" class="form-control" id="DepartmentInput" placeholder="Department"  value="<?PHP echo $department;?>">
+    </div>  
+	
+    <div class="form-group">
+      <label for="title">Location</label>
+      <input type="text" name="location" class="form-control" id="LocationInput" placeholder="Location"  value="<?PHP echo $location;?>">
+    </div>
+	<div class="form-group">
+      <label for="title">Email</label>
+      <input type="text" name="email" class="form-control" id="EmailInput" placeholder="Email"  value="<?PHP echo $email;?>">
+    </div>
+	<div class="form-group">
+      <label for="title">Phone</label>
+      <input type="text" name="phone" class="form-control" id="phoneInput" placeholder="Phone"  value="<?PHP echo $phone;?>">
+    </div>
+	<div class="form-group">
+      <label for="title">Fax</label>
+      <input type="text" name="fax" class="form-control" id="FaxInput" placeholder="Fax"  value="<?PHP echo $fax;?>">
+    </div>
+	<div class="form-group" 
+      <label for="title">Status</label>
+      <input type="text" name="status" class="form-control" id="StatusInput" placeholder="Status"  value="<?PHP echo $status;?>">
+    </div>   
+
+  </div><!-- /.box-body -->
+
+  <div class="box-footer">
+    <button type="submit" class="btn btn-primary">Save</button>
+  </div>
+  </form>
+</div><!-- /.box -->

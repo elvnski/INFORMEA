@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>InforMEA Document Repository | Dashboard</title>
+
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.5 -->
+    <?= $this->tag->stylesheetLink("bootstrap/css/bootstrap.min.css"); ?>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
+
+    <!-- jvectormap -->
+    <?= $this->tag->stylesheetLink("plugins/jvectormap/jquery-jvectormap-1.2.2.css"); ?>
+    <!-- Theme style -->
+    <?= $this->tag->stylesheetLink("css/AdminLTE.min.css"); ?>
+    <!-- AdminLTE Skins. Choose a skin from the css/skins folder instead of downloading all of them to reduce the load. -->
+    <?= $this->tag->stylesheetLink("css/skins/_all-skins.min.css"); ?>
+
+
+    <?php $this->assets->outputCss() ?>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+
+    <header class="main-header">
+
+        <!-- Logo -->
+        <a href="6" class="logo">
+            <!-- mini logo for sidebar mini 50x50 pixels -->
+            <span class="logo-mini"><b>A</b>LT</span>
+            <!-- logo for regular state and mobile devices -->
+            <span class="logo-lg"><b>Infor</b>MEA</span>
+        </a>
+
+        <!-- Header Navbar: style can be found in header.less -->
+        <nav class="navbar navbar-static-top" role="navigation">
+            <!-- Sidebar toggle button-->
+            <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                <span class="sr-only">Toggle navigation</span>
+            </a>
+            <!-- Navbar Right Menu -->
+            <div class="navbar-custom-menu">
+                <ul class="nav navbar-nav">
+
+                    <!-- User Account: style can be found in dropdown.less -->
+                    <li class="dropdown user user-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <?= $this->tag->image(array("img/user.png", "alt" =>"User Image", "class"=>"user-image")); ?>
+                            <span class="hidden-xs"><?=$auth['fullname'] ?></span>
+                        </a>
+                        <ul class="dropdown-menu">
+
+                            <!-- Menu Footer-->
+                            <li class="user-footer">
+                                <div class="pull-right">
+                                    <?php
+                                    if($this->session->get('auth') != null)
+                                    {
+                                        echo $this->tag->linkTo(['user/logout', 'Sign Out', 'class' => 'btn btn-default btn-flat']);
+                                    }
+                                    else{
+                                        echo $this->tag->linkTo(['user', 'Sign In', 'class' => 'btn btn-default btn-flat']);
+                                    }?>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </div>
+
+        </nav>
+    </header>
+      <!-- Left side column. contains the logo and sidebar -->
+      <aside class="main-sidebar">
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">         
+          
+          <!-- sidebar menu: : style can be found in sidebar.less -->
+          <ul class="sidebar-menu">
+            <li class="header">MAIN NAVIGATION</li>
+            <li class="active treeview">
+              <a href="#">
+                <i class="fa fa-dashboard"></i> <span>Document Categories</span> <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li class="<?PHP echo $class;?>"><?= $this->tag->linkTo("category/list/4", "<i class='fa fa-circle-o'></i> Meetings"); ?></li>
+                <li class="<?PHP echo $class;?>"><?= $this->tag->linkTo("category/list/3", "<i class='fa fa-circle-o'></i> Decisions"); ?></li>
+                <li class="<?PHP echo $class;?>"><?= $this->tag->linkTo("category/list/2", "<i class='fa fa-circle-o'></i> Contacts"); ?></li>                
+                <li class="<?PHP echo $class;?>"><?= $this->tag->linkTo("category/list/1", "<i class='fa fa-circle-o'></i> Country Reports"); ?></li>
+                <li class="<?PHP echo $class;?>"><?= $this->tag->linkTo("category/list/5", "<i class='fa fa-circle-o'></i> General Documents"); ?></li>
+                <li class="<?PHP echo $class;?>"><?= $this->tag->linkTo("category/list/6", "<i class='fa fa-circle-o'></i> Library Catalog"); ?></li>
+                <li class="<?PHP echo $class;?>"><?= $this->tag->linkTo("category/list/7", "<i class='fa fa-circle-o'></i> Publications"); ?></li>
+              </ul>
+            </li>
+		<?PHP
+			if(in_array_r('Administrator', $this->session->get('auth')['user_type']))
+			{ 
+			?>
+			<li class="active treeview">
+              <a href="#">
+                <i class="fa fa-dashboard"></i> <span>Admin</span> <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li class="<?PHP echo $class;?>"><?= $this->tag->linkTo("user/list/", "<i class='fa fa-circle-o'></i> Users"); ?></li>
+              </ul>
+            </li>
+			<?PHP } ?>
+            <!--li>
+              <a href="pages/widgets.html">
+                <i class="fa fa-th"></i> <span>Search</span>
+              </a>
+            </li-->            
+          </ul>
+        </section>
+        <!-- /.sidebar -->
+      </aside>
+
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+          <h1>
+            <?= $title ?>
+          </h1>
+          <!--<ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Dashboard</li>
+          </ol>-->
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+          <?php print $this->getContent(); ?>
+        </section>
+        
+      </div><!-- /.content-wrapper -->
+
+      <footer class="main-footer">
+        <div class="pull-right hidden-xs">
+          <b>Version</b> 1.0
+        </div>
+        <strong>Copyright &copy; 2016 <a href="#">UNEP ICTU</a>.</strong> All rights reserved.
+      </footer>
+
+      
+
+    </div><!-- ./wrapper -->
+
+    <!-- jQuery 2.1.4 -->
+    <?= $this->tag->javascriptInclude("plugins/jQuery/jQuery-2.1.4.min.js") ?>
+    <!-- Bootstrap 3.3.5 -->
+    <?= $this->tag->javascriptInclude("bootstrap/js/bootstrap.min.js") ?>
+    <!-- SlimScroll -->
+    <?= $this->tag->javascriptInclude("plugins/slimScroll/jquery.slimscroll.min.js") ?>
+    <!-- FastClick -->
+    <?= $this->tag->javascriptInclude("plugins/fastclick/fastclick.min.js") ?>
+    <!-- Sparkline -->
+    <?= $this->tag->javascriptInclude("plugins/sparkline/jquery.sparkline.min.js") ?>
+    <!-- AdminLTE App -->
+    <?= $this->tag->javascriptInclude("js/app.min.js") ?>
+
+    
+
+    <?php $this->assets->outputJs() ?>
+
+    <!-- AdminLTE for demo purposes -->
+    <?= $this->tag->javascriptInclude("js/demo.js") ?>
+
+    <!-- render custom javascript code -->
+    <?php $this->partial("shared/javascript", array('javascript' =>$javascript)); ?>
+    
+	<script type="text/javascript">
+
+    function show_popup(title, body, footer, modalsize)
+		{
+
+			if (modalsize != null)
+			{
+				$('#default-modal .modal-dialog').addClass(modalsize);
+			}
+			else
+			{
+				$('#default-modal .modal-dialog').removeClass().addClass('modal-dialog');
+			}
+
+			$('#default-modal .modal-title').html(title);
+			$('#default-modal .modal-body').html(body);
+			if (footer=="")
+			{
+				$('#default-modal .modal-footer').css({'display':'none'});
+			}
+			else
+			{
+				$('#default-modal .modal-footer').css({'display':'block'});
+				$('#default-modal .modal-footer').html(footer);
+			}
+			$('#default-modal').modal({backdrop:'static',keyboard:true});
+			$("html, body").animate({ scrollTop: 0 }, "slow");
+		}
+		</script>
+    <div class="modal fade" id="default-modal" style="display:none;"  tabindex='-1'>
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title"></h4>
+			</div>
+			<div class="modal-body">
+
+			</div>
+			<div class="modal-footer">
+
+			</div>	
+			<div id="modal-fade"></div>			
+			<div id="modal-spinner-modal" style="display:none;">
+				<img id="modal-loader" src="../../public/img/loading.gif" />
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div>
+<div class="modal fade" id="default-modal" style="display:none;"  tabindex='-1'>
+	<div class="modal-dialog-custom" style="width:100%;">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title"></h4>
+			</div>
+			<div class="modal-body">
+
+			</div>
+			<div class="modal-footer">
+
+			</div>
+			<div id="modal-fade" class="page-fade"></div>
+			<div id="modal-spinner-modal" class="page-spinner-modal" >
+				<img id="modal-loader" src="../../public/img/loading.gif" />
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div>
+<div class="footer">
+<div id="bottom"></div>
+	<div class="copyright">© copyright <?PHP echo date('Y');?>
+		<div class="poweredby">Powered By &nbsp;
+			<div class="poweredbylogo2"></div>
+		</div>
+	</div> 
+	
+</div>
+<div id="fade" class="page-fade"></div>
+<div id="spinner-modal" class="page-spinner-modal">
+	<img id="loader" src="../../public/img/loading.gif" />
+</div>
+    
+    
+  </body>
+</html>

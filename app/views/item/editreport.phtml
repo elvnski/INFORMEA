@@ -1,0 +1,210 @@
+<div class="box box-primary">
+  <div class="box-header with-border">
+    <h3 class="box-title">Edit Report Details</h3>
+  </div><!-- /.box-header -->                
+  <?PHP //print_r($data);
+	$keywords = [];
+	$languages = [];
+	$treaties = [];
+	$countries = [];	
+	foreach($values->metadata as $d)
+	{
+		//print "$d->key< - >";                
+		//print "$d->value";
+		//print "<br/>";  
+		if($d->key == 'dc.contributor.author'){$author = $d->value;}
+		if($d->key == 'dc.date.issued'){$date_issued = $d->value;}
+		if($d->key == 'dc.identifier.uri'){$url = $d->value;}
+		if($d->key == 'dc.description'){$description = $d->value;}
+		if($d->key == 'dc.publisher'){$publisher = $d->value;}
+		if($d->key == 'dc.language')
+		{
+			array_push($languages,$d->value);
+		}
+		if($d->key == 'dc.subject')
+		{
+			array_push($keywords,$d->value);
+		}
+		if($d->key == 'dc.title'){$title = $d->value;}
+		if($d->key == 'dc.type'){$type = $d->value;}
+		if($d->key == 'informea.identifier.treaty'){
+	
+			array_push($treaties,$d->value);
+		}
+		if($d->key == 'informea.identifier.rights'){$rights = $d->value;}
+		if($d->key == 'informea.identifier.country'){
+	
+			array_push($countries,$d->value);
+		}		
+	} 
+	if($date_issued != ''){$date_issued = date('m/d/Y', strtotime($date_issued));} 
+	if(is_array($keywords))
+	{
+		$existingkeywords = implode($keywords, ",");
+	}
+	if(is_array($languages))
+	{
+		$existinglanguages = implode($languages, ",");
+	}
+	if(is_array($treaties))
+	{
+		$existingtreaties = implode($treaties, ",");
+	}
+	if(is_array($countries))
+	{
+		$existingcountries = implode($countries, ",");
+	}
+  ?>
+  <?= $this->tag->form(array("item/editreport/".$itemID, "method"=>"post", "enctype"=>"multipart/form-data")) ?>
+   <input type="hidden" name="itemID" value="<?PHP echo $itemID;?>" />
+   <input type="hidden" id="extrakeywords" name="extrakeywords" value="">
+   <input type="hidden" id="existingkeywords" name="existingkeywords" value="<?PHP echo $existingkeywords;?>">
+   <input type="hidden" id="keywords_counter" name="keywords_counter" value="<?PHP echo sizeof($keywords); ?>"/> 
+  
+   <input type="hidden" id="extralanguages" name="extralanguages" value="">
+   <input type="hidden" id="existinglanguages" name="existinglanguages" value="<?PHP echo $existinglanguages;?>">
+   <input type="hidden" id="languages_counter" name="languages_counter" value="<?PHP echo sizeof($languages); ?>"/> 
+   <input type="hidden" id="extratreaties" name="extratreaties" value="">
+   <input type="hidden" id="existingtreaties" name="existingtreaties" value="<?PHP echo $existingtreaties;?>">
+	<input type="hidden" id="treaty_counter" name="treaty_counter" value="<?PHP echo sizeof($treaty); ?>"/>   
+   <input type="hidden" id="extracountries" name="extracountries" value="">
+   <input type="hidden" id="existingcountries" name="existingcountries" value="<?PHP echo $existingcountries;?>">
+   <input type="hidden" id="country_counter" name="country_counter" value="<?PHP echo sizeof($country); ?>"/> 
+  <div class="box-body">  
+    
+    <div class="form-group">
+      <label for="exampleInputEmail1">Title</label>
+      <input type="text" name="title" class="form-control" id="titleInput" placeholder="Document Title" value="<?PHP echo $title;?>">
+    </div>
+    <div class="form-group">
+      <label for="meetingNumber">Contribution Author</label>
+      <input type="text" name="author" class="form-control" id="authorInput" placeholder="Author" value="<?PHP echo $author;?>">
+    </div>	
+	<div class="form-group">
+      <label for="title">Description</label>
+	  <textarea name="description" class="form-control" rows="3" placeholder="Description ..."> <?PHP echo $description;?></textarea>
+    </div>	
+    <div class="form-group">
+      <label>Date Issued:</label>
+        <div class="input-group">
+          <div class="input-group-addon">
+            <i class="fa fa-calendar"></i>
+          </div>
+        <input type="text" class="form-control pull-right" id="date_issued" name="date_issued"  value="<?PHP echo $date_issued;?>">
+      </div><!-- /.input group -->
+    </div><!-- /.form group -->
+	
+   <div class="languages_fields_wrap">
+	<?PHP 
+	for($i = 0; $i<= sizeof($languages)-1; $i ++ )
+	{ ?>	
+		<div>
+			<div id="languagesInput<?PHP echo $i;?>" data_id="<?PHP echo $i;?>" class="form-group">
+				<label for="languages" class="col-sm-2 control-label">Languages </label>
+				<div class="col-sm-6">
+					<div class="control-group">
+					<div class="controls">
+					<div class="input-prepend input-group col-sm-8">
+					<input type="text" id="languagesInputText[]" readonly class="form-control input-prepend existinglanguages" name="languages" placeholder="Languages"  value="<?PHP echo $languages[$i];?>"/>
+					</div>
+				</div>
+			</div>
+		</div>
+		<i class="fa  btn btn-danger remove_existing_language"  data_id="<?PHP echo $i;?>"><span class="glyphicon glyphicon-trash"></span> Delete</i></div></div>
+		<?PHP }?>   
+	</div>
+	<i id="addMoreLanguage" class='addMore fa fa-credit-card btn btn-success'>Add New Language</i>     
+	</div>
+	
+	<div class="form-group">
+      <label for="title">Publisher</label>
+      <input type="text" name="publisher" class="form-control" id="PublisherInput" placeholder="Publisher"  value="<?PHP echo $publisher;?>">
+    </div>
+	
+	
+   <div class="input_fields_wrap">
+	<?PHP 
+	for($i = 0; $i<= sizeof($keywords)-1; $i ++ )
+	{ ?>
+	<div>
+		<div id="keywordsInput<?PHP echo $i;?>" data_id="<?PHP echo $i;?>" class="form-group">
+			<label for="keywords" class="col-sm-2 control-label">Subject Keywords </label>
+			<div class="col-sm-6">
+				<div class="control-group">
+				<div class="controls">
+				<div class="input-prepend input-group col-sm-8">
+				<input type="text" id="keywordsInputText[]" readonly class="form-control input-prepend existingkeywords" name="keywords" placeholder="Document Keywords"  value="<?PHP echo $keywords[$i];?>"/>
+				</div>
+			</div>
+		</div>
+	</div>
+	<i class="fa  btn btn-danger remove_existing_keyword"  data_id="<?PHP echo $i;?>"><span class="glyphicon glyphicon-trash"></span> Delete</i></div></div>
+	<?PHP }?>   	
+    </div>
+	<i id="addMore" class='addMore fa fa-credit-card btn btn-success'>Add New Keyword</i>     
+ <div class="form-group">
+      <label for="title">Type</label>
+      <input type="text" name="type" class="form-control" id="TypeInput" placeholder="Type" value="<?PHP echo $type;?>">
+    </div> 
+	
+   <div class="treaty_fields_wrap">
+	<?PHP 
+	for($i = 0; $i<= sizeof($treaties)-1; $i ++ )
+	{ ?>
+	<div>
+		<div id="treatiesInput<?PHP echo $i;?>" data_id="<?PHP echo $i;?>" class="form-group">
+			<label for="treaty" class="col-sm-2 control-label">Treaty </label>
+			<div class="col-sm-6">
+				<div class="control-group">
+				<div class="controls">
+				<div class="input-prepend input-group col-sm-8">
+				<input type="text" id="treatiesInputText[]" readonly class="form-control input-prepend existingtreaties" name="treaty" placeholder="Treaty"  value="<?PHP echo $treaties[$i];?>"/>
+				</div>
+			</div>
+		</div>
+	</div>
+	<i class="fa  btn btn-danger remove_existing_treaty"  data_id="<?PHP echo $i;?>"><span class="glyphicon glyphicon-trash"></span> Delete</i></div></div>
+	<?PHP }?>   	
+    </div>
+	<i id="addMoreTreaty" class='addMore fa fa-credit-card btn btn-success'>Add New Treaty</i>     
+ 
+    <div class="form-group">
+      <label for="title">Rights</label>
+      <input type="text" name="rights" class="form-control" id="rightsInput" placeholder="Rights" value="<?PHP echo $rights;?>">
+    </div>
+
+   <div class="country_fields_wrap">
+	<?PHP 
+	for($i = 0; $i<= sizeof($countries)-1; $i ++ )
+	{ ?>
+	<div>
+		<div id="countriesInput<?PHP echo $i;?>" data_id="<?PHP echo $i;?>" class="form-group">
+			<label for="country" class="col-sm-2 control-label">Country </label>
+			<div class="col-sm-6">
+				<div class="control-group">
+				<div class="controls">
+				<div class="input-prepend input-group col-sm-8">
+				<input type="text" id="countryInputText[]" readonly class="form-control input-prepend existingcountries" name="country" placeholder="Document Country"  value="<?PHP echo $countries[$i];?>"/>
+				</div>
+			</div>
+		</div>
+	</div>
+	<i class="fa  btn btn-danger remove_existing_country"  data_id="<?PHP echo $i;?>"><span class="glyphicon glyphicon-trash"></span> Delete</i></div></div>
+	<?PHP }?>   	
+    </div>
+	<i id="addMoreCountry" class='addMore fa fa-credit-card btn btn-success'>Add New Country</i>     
+ 
+                    
+    <div class="form-group">
+      <label for="exampleInputFile">File input</label>
+      <input type="file" id="documentFile" name="fileOne">
+      <p class="help-block">Upload the relevant file.</p>
+    </div>
+
+  </div><!-- /.box-body -->
+
+  <div class="box-footer">
+    <button type="submit" class="btn btn-primary">Save</button>
+  </div>
+  </form>
+</div><!-- /.box -->

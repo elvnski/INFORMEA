@@ -1,0 +1,27 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="box">
+      
+      <div class="box-header">
+        <h3 class="box-title"></h3>
+        <?PHP
+		if($token != NULL)
+        {
+			echo $this->tag->linkTo(
+            array("Metadata/".$form."/", 
+                  "{$button_title}", 
+                  "class" => "btn btn-success pull-right")
+            );
+		}			
+        ?>        
+      </div><!-- /.box-header -->
+      
+      <div class="box-body">
+        <table id="document-metadata-table" class="table table-bordered table-striped">                   
+        </table>
+      </div><!-- /.box-body -->
+
+    </div><!-- /.box -->
+
+  </div>
+</div>

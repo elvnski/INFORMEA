@@ -1,0 +1,80 @@
+<div class="box box-primary">
+  <div class="box-header with-border">
+    <h3 class="box-title"><?= $doc; ?></h3>
+  </div><!-- /.box-header -->
+
+  <div class="box-body">
+    <div class="col-xs-12 table-responsive">
+      <table class="table table-striped">
+        <tbody>
+          <tr>
+            <th style="width: 25%">Metadata</th>
+            <th>Value</th>
+          </tr>  
+          <?php               
+            foreach($data->metadata as $d)
+            {
+              print "<tr>";
+              print "<td>$d->key</td>";                
+              print "<td>$d->value</td>";
+              print "</tr>";                
+            }
+          ?>
+        </tbody>
+      </table>
+    </div>
+  <?PHP if($auth != NULL)
+  {
+   
+    ?>
+  <a class="btn btn-primary btn-sm" href="<?=$this->url->get("item/edit"); ?><?PHP echo $action;?>/<?PHP echo $itemID;?>"><span class="glyphicon glyphicon-edit"></span> Edit</a> 
+  <a class="btn btn-danger btn-sm" href="<?=$this->url->get("item/delete/"); ?><?PHP echo $itemID;?>" onclick="return confirm('Are you sure you want to delete this item?');"><span class="glyphicon glyphicon-trash"></span> Delete</a> 
+  <?PHP 
+  }
+  if(($action == 'decision') ||($action == 'report')) {?>
+    <h4>Uploaded Files</h4>
+    <div class="col-xs-12 table-responsive">
+      <table class="table table-hover">
+        <tr>
+          <th></th>
+          <th>File</th>
+          <th>Format</th>
+          <th>Description</th>          
+          <th width="2%"></th>
+          <th width="2%"></th>
+        </tr>
+        <?php
+          foreach($data->bitstreams as $d)
+          {
+            $download_link = $this->config->dspace->baseUrl . ltrim($d->retrieveLink, "/");
+
+              print '<tr>';
+              print "<td></td>";              
+              print "<td><a href='$download_link'>$d->name</a></td>";               
+              print "<td>$d->format</td>";    
+              print "<td>$d->description</td>";            
+              print "<td>"; 
+              print "</td>";
+              print "<td>";
+        echo '<a class="btn btn-danger btn-sm delete" href="/informea/item/filedelete/'.$d->id.'-'.$itemID.'" onclick="return confirm(\'Are you sure you want to delete this item?\');"><span class="glyphicon glyphicon-trash"></span> Delete</a> ';
+              /*print $this->tag->linkTo([
+                  "item/filedelete/".$d->id, 
+                  "<span class='glyphicon glyphicon-trash'></span> Delete", 
+                  "class" => "btn btn-danger btn-sm"
+                ]
+              );*/
+              print "</td>"; 
+              print "</tr>";             
+            }
+
+          ?>
+      </table>
+    </div>
+  <?PHP } ?>
+  </div><!-- /.box-body -->
+
+  <div class="box-footer">  
+  </div>
+  </form>
+</div><!-- /.box -->
+

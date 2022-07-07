@@ -1,0 +1,86 @@
+<script type="text/javascript">
+   
+	$(document).ready(function() {
+		 
+  
+		var table_data = <?PHP echo $data; ?>; 
+
+		console.log(table_data);
+
+		var table_options = {       
+		  "processing": true,  
+		  "rowId": 'id',
+		  "autoWidth": false, 
+		  "bSort": true, 
+		  "data": table_data,
+		  "columns": [      
+		    { 
+		    	"title": "Metadata", 
+		    	"data": "metadata_name"
+		    }, 
+		    { "title": "Created", "data": "lastModified"},
+		    { 
+			    "title": "Edit", 
+			    "class": "", 
+			    "targets": 1, 
+			    "width": "10px",
+			    "orderable": false,
+			    "data": "id",
+			    "defaultContent": "",
+	    		render: function ( data, type, row ) {
+			        if ( type === 'display' ) {
+			           return '<p><a href="<?=$this->url->get("Metadata/Edit/");?>'+ data +'"><span class="glyphicon glyphicon-edit"></span></a></p>';
+					   
+			        }
+		        
+		        	return data;
+	        	},
+	        },
+			{ 
+			    "title": "Delete", 
+			    "class": "", 
+			    "targets": 1, 
+			    "width": "10px",
+			    "orderable": false,
+			    "data": "id",
+			    "defaultContent": "",
+	    		render: function ( data, type, row ) {
+			        if ( type === 'display' ) {
+			           return '<p><a href="<?=$this->url->get("Metadata/Delete/");?>'+ data +'"><span class="glyphicon glyphicon-remove"></span></a></p>';
+					   
+			        }
+		        
+		        	return data;
+	        	},
+	        },
+		  ],
+		"columnDefs":[		
+		{
+			"render": function ( data, type, row ) 
+			{
+				if(data == ''){ data = 'No Title';}
+				
+				var title = '<a href="<?=$this->url->get("Metadata/Edit/");?>'+ row.id +'" > '+ data +' </a>' ;
+
+				return title;
+			},
+			"targets": [0]
+		},
+		]
+		};
+
+		  
+		var documents_metadata_table = $('#document-metadata-table').DataTable(table_options);   
+		
+		$('#document-metadata-table').on( 'dblclick', 'tr', function () {
+		    
+		    var id = 109;
+		    window.location = "/Metadata/Edit/"+id;
+		});
+
+		
+
+	});
+
+
+</script>

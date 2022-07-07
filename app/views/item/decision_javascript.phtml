@@ -1,0 +1,159 @@
+
+<script type="text/javascript">
+
+	 $('.select2').select2();
+	var meetings = <?= @$meetings; ?>;
+	$('#meeting_idInput').select2({ data: meetings });
+   
+	$(function() {
+    $('#date_issued').daterangepicker({
+        singleDatePicker: true,
+        showDropdowns: true
+    });
+});
+
+
+
+	$('#btn-submit').click(function(e)
+	{
+	 
+		var file = document.getElementById('documentFile').files[0];
+		if(file)
+		{ 
+			if($("#language").val() == '0')
+			{
+				e.preventDefault();
+				alert('You need to specify the file language!'); 
+			}
+		} 
+	}); 
+
+	function addkeywords(keyword)
+	{
+		$('#extrakeywords').val($('#extrakeywords').val() + keyword.value+','); 
+	}  
+	function addlanguages(language)
+	{
+		$('#extralanguages').val($('#extralanguages').val() + language.value+','); 
+	} 
+	$(function () {
+        
+		var max_fields      = 40; //maximum input boxes allowed
+		var wrapper         = $(".input_fields_wrap"); //Fields wrapper
+		var languagewrapper         = $(".languages_fields_wrap"); //Fields wrapper
+		var reportwrapper         = $(".report_required_fields_wrap"); //Fields wrapper
+		
+		var counter = <?PHP echo sizeof($keywords) ;?>+1;
+		var counterlanguage = <?PHP echo sizeof($languages) ;?>+1;
+		
+		$("#addMore").on('click',function(e){
+			e.preventDefault();
+			if(counter < max_fields)
+			{
+				counter ++;
+				$(wrapper).append('<div><div id="keywordsInput' + (counter) + '" data_id="' + (counter) + '" class="form-group"><label for="keywords" class="col-sm-2 control-label">Subject Keywords </label><div class="col-sm-6"><div class="control-group"><div class="controls"><div class="input-prepend input-group col-sm-8"><input type="text" id="keywords[]" class="form-control input-prepend keywords" name="exkeywords[]" placeholder="Document Keywords" onchange="addkeywords(this)"/></div></div></div></div><i class="fa  btn btn-danger remove_keyword" data_id="' + (counter) + '"><span class="glyphicon glyphicon-trash"></span> Delete</i></div></div>');
+				
+			}
+			
+			$("#keywords_counter").val(counter);
+		});
+		
+		$(wrapper).on("click",".remove_existing_keyword", function(e){ //user click on remove text
+			e.preventDefault(); 
+			var selected_id = $(this).attr('data_id'); 
+			$('#keywordsInput'+selected_id).remove(); 
+			var existingkeywords = $('#existingkeywords').val();
+			var existingkeywordsarr = existingkeywords.split(","); 
+			 
+			existingkeywordsarr.splice(selected_id);
+			$("#existingkeywords").val("");
+			var newkeyword= "";
+			$('.existingkeywords').each(function()
+			{
+				newkeyword += $(this).val()+',';	
+			}); 
+			$('#existingkeywords').val(newkeyword); 
+		});
+		 
+
+		$(wrapper).on("click",".remove_keyword", function(e){ //user click on remove text
+			e.preventDefault(); 
+			var selected_id = $(this).attr('data_id');
+			counter--; 
+ 
+			$('#keywordsInput'+selected_id).remove(); 
+			var extrakeywords = $('#extrakeywords').val();
+			var extrakeywordsarr = extrakeywords.split(","); 
+			 
+			extrakeywordsarr.splice(selected_id);
+			$("#extrakeywords").val("");
+			var newkeyword= "";
+			$('.keywords').each(function()
+			{
+				newkeyword += $(this).val()+',';	
+			});
+			$('#extrakeywords').val(newkeyword);  
+
+			$("#keywords_counter").val(counter);
+		});
+		
+		
+		$("#addMoreLanguage").on('click',function(e){
+			e.preventDefault();
+			if(counterlanguage < max_fields)
+			{
+				counterlanguage ++;
+				$(languagewrapper).append('<div><div id="languagesInput' + (counterlanguage) + '" data_id="' + (counterlanguage) + '" class="form-group"><label for="languages" class="col-sm-2 control-label">Languages </label><div class="col-sm-6"><div class="control-group"><div class="controls"><div class="input-prepend input-group col-sm-8"><input type="text" id="languages[]" class="form-control input-prepend languages" name="exlanguages[]" placeholder="Document Languages" onchange="addlanguages(this)"/></div></div></div></div><i class="fa  btn btn-danger remove_language" data_id="' + (counterlanguage) + '"><span class="glyphicon glyphicon-trash"></span> Delete</i></div></div>');
+				
+			}
+			
+			$("#languages_counter").val(counterlanguage);
+		});
+		
+		
+		 
+
+	  
+		$(languagewrapper).on("click",".remove_existing_language", function(e){ //user click on remove text
+			e.preventDefault(); 
+			var selected_id = $(this).attr('data_id');
+			$('#languagesInput'+selected_id).remove(); 
+			// $("div" ).remove('#languagesInput'+selected_id);
+			var existinglanguages = $('#existinglanguages').val();
+			var existinglanguagesarr = existinglanguages.split(","); 
+			 
+			existinglanguagesarr.splice(selected_id);
+			$("#existinglanguages").val("");
+			var newlanguage= "";
+			$('.existinglanguages').each(function()
+			{
+				 newlanguage += $(this).val()+',';	
+			}); 
+			$('#existinglanguages').val(newlanguage); 
+		});
+		
+		$(languagewrapper).on("click",".remove_language", function(e){ //user click on remove text
+	  	e.preventDefault(); 
+		var selected_id = $(this).attr('data_id');
+	  	counterlanguage--; 
+		
+		$( "div" ).remove('#languagesInput'+selected_id);
+		var extralanguages = $('#extralanguages').val();
+		var extralanguagesarr = extralanguages.split(","); 
+		 
+		extralanguagesarr.splice(selected_id);
+		$("#extralanguages").val("");
+		var newlanguage= "";
+		$('.languages').each(function()
+		{
+			newlanguage += $(this).val()+',';	
+		});
+		$('#extralanguages').val(newlanguage);  
+
+	  	$("#languages_counter").val(counterlanguage);
+	  });
+		
+    });
+
+
+</script> 

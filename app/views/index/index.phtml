@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="box">
+      
+      <div class="box-header">
+        <h3 class="box-title"></h3>
+        <?= $this->tag->linkTo(
+            array("item/".$form."/", 
+                  "<i class='fa fa-credit-card'></i> Add New Document", 
+                  "class" => "btn btn-success pull-right")
+            ); 
+        ?>        
+      </div><!-- /.box-header -->
+      
+      <div class="box-body">
+        <table id="document-categories-table" class="table table-bordered table-striped">                   
+        </table>
+      </div><!-- /.box-body -->
+
+    </div><!-- /.box -->
+
+  </div>
+</div>

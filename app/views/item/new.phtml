@@ -1,0 +1,39 @@
+<div class="box box-primary">
+  <div class="box-header with-border">
+    <h3 class="box-title">Add Item Details</h3>
+  </div><!-- /.box-header -->                
+  
+  <div class="box-body">
+
+  <?= $this->tag->form(array("item/save", "method"=>"post", "enctype"=>"multipart/form-data")) ?>
+  <?php
+        // Traverse the form
+        foreach ($form as $element) {
+
+            // Get any generated messages for the current element
+            $messages = $form->getMessagesFor($element->getName());
+
+            if (count($messages)) {
+                // Print each element
+                echo '<div class="messages">';
+                foreach ($messages as $message) {
+                    echo $message;
+                }
+                echo '</div>';
+            }
+
+            echo '<div class="form-group">';
+            echo '<label for="', $element->getName(), '">', $element->getLabel(), '</label>';
+            echo $element;
+            echo '</div>';
+
+        }
+    ?>    
+
+    </div><!-- /.box-body -->
+
+    <div class="box-footer">
+      <button type="submit" class="btn btn-primary">Save & Upload Files</button>
+    </div>
+  </form>
+</div><!-- /.box -->

@@ -1,0 +1,34 @@
+<div class="row">
+  <div class="col-md-12">
+    <ul class="timeline">
+  
+  <?php 
+      //var_dump($data); 
+      static $num = 1;
+
+      foreach($data as $d){
+        
+        $url = "item/detail/".$d->id;
+        
+        print '<li>';        
+        print '<div class="timeline-item">';
+        //print  '<span class="time"><i class="fa fa-clock-o"></i> 12:05</span>';
+        print  '<h3 class="timeline-header"></h3>';
+        print '<div class="timeline-body">';
+        print $d->name;
+        print '</div>';
+        print '<div class="timeline-footer">';
+        //print '<a class="btn btn-primary btn-xs">Read more</a>';
+        print $this->tag->linkTo(array($url, 'Read more', 'class' => 'btn btn-primary btn-xs'));
+        //print  '<a class="btn btn-danger btn-xs">Delete</a>';
+        print '</div>';
+        print '</div>';
+        print '</li>';
+
+        $num++;
+      }
+    ?>
+    </ul>
+
+  </div>
+</div>

@@ -1,0 +1,193 @@
+<div class="box box-primary">
+  <div class="box-header with-border">
+    <h3 class="box-title">Edit Decision Details</h3>
+  </div><!-- /.box-header -->                
+  
+  <?= $this->tag->form(array("item/editdecision/".$itemID, "method"=>"post", "enctype"=>"multipart/form-data")) ?>
+   <input type="hidden" name="itemID" value="<?PHP echo $itemID;?>" />
+   
+  <?PHP //print_r($data);
+  $keywords = [];
+  $languages = [];
+  foreach($values->metadata as $d)
+  {
+    //print "$d->key< - >";                
+    //print "$d->value";
+    //print "<br/>";  
+    if($d->key == 'dc.contributor.author'){$author = $d->value;}
+    if($d->key == 'dc.date.issued'){$date_issued = $d->value;}
+    if($d->key == 'dc.identifier.uri'){$url = $d->value;}
+    if($d->key == 'dc.description'){$description = $d->value;}
+    if($d->key == 'dc.language'){
+  
+      array_push($languages,$d->value);
+    } 
+    if($d->key == 'dc.publisher'){$publisher = $d->value;}
+    if($d->key == 'dc.subject')
+    {
+       array_push($keywords,$d->value); 
+    } 
+    if($d->key == 'dc.title'){$title = $d->value;}
+    if($d->key == 'dc.type'){$type = $d->value;}
+    if($d->key == 'informea.identifier.treaty'){$treaty = $d->value;} 
+    if($d->key == 'informea.identifier.rights'){$rights = $d->value;} 
+    if($d->key == 'informea.identifier.status'){$status = $d->value;} 
+    if($d->key == 'informea.identifier.meeting-id'){$meeting_id = $d->value;}   
+    if($d->key == 'informea.identifier.number'){$number = $d->value;}
+    if($d->key == 'informea.identifier.display-order'){$displayorder = $d->value;} 
+    if($d->key == 'informea.identifier.language'){$language = $d->value;}  
+ 
+   
+
+  }  
+  if($date_issued != ''){$date_issued = date('m/d/Y', strtotime($date_issued));} 
+  if(is_array($keywords))
+  {
+    $existingkeywords = implode($keywords, ",");
+  }
+  if(is_array($languages))
+  {
+    $existinglanguages = implode($languages, ",");
+  }
+  ?>
+   <input type="hidden" name="itemID" value="<?PHP echo $itemID;?>" />
+   <input type="hidden" id="extrakeywords" name="extrakeywords" value="">
+   <input type="hidden" id="existingkeywords" name="existingkeywords" value="<?PHP echo $existingkeywords;?>">
+   <input type="hidden" id="keywords_counter" name="keywords_counter" value="<?PHP echo sizeof($keywords); ?>"/> 
+  
+   <input type="hidden" id="extralanguages" name="extralanguages" value="">
+   <input type="hidden" id="existinglanguages" name="existinglanguages" value="<?PHP echo $existinglanguages;?>">
+   <input type="hidden" id="languages_counter" name="languages_counter" value="<?PHP echo sizeof($languages); ?>"/> 
+  <div class="box-body">  
+    
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input type="text" name="title" class="form-control" id="titleInput" placeholder="Meeting Title" value="<?PHP echo $title;?>">
+    </div>
+    <div class="form-group">
+      <label for="meetingNumber">Contribution Author</label>
+      <input type="text" name="author" class="form-control" id="authorInput" placeholder="Author" value="<?PHP echo $author;?>">
+    </div>  
+    <div class="input_fields_wrap">
+  <?PHP 
+  for($i = 0; $i<= sizeof($keywords)-1; $i ++ )
+  { ?>
+  <div>
+    <div id="keywordsInput<?PHP echo $i;?>" data_id="<?PHP echo $i;?>" class="form-group">
+      <label for="keywords" class="col-sm-2 control-label">Subject Keywords </label>
+      <div class="col-sm-6">
+        <div class="control-group">
+        <div class="controls">
+        <div class="input-prepend input-group col-sm-8">
+        <input type="text" id="keywordsInputText[]" readonly class="form-control input-prepend existingkeywords" name="keywords" placeholder="Document Keywords"  value="<?PHP echo $keywords[$i];?>"/>
+        </div>
+      </div>
+    </div>
+  </div>
+  <i class="fa  btn btn-danger remove_existing_keyword"  data_id="<?PHP echo $i;?>"><span class="glyphicon glyphicon-trash"></span> Delete</i></div></div>
+  <?PHP }?>     
+    </div>
+  <i id="addMore" class='addMore fa fa-credit-card btn btn-success'>Add New Keyword</i>     
+  <div class="form-group">
+      <label for="title">Description</label>
+    <textarea name="description" class="form-control" rows="3" placeholder="Description ..."> <?PHP echo $description;?></textarea>
+    </div>
+  <div class="languages_fields_wrap">
+  <?PHP 
+  for($i = 0; $i<= sizeof($languages)-1; $i ++ )
+  { ?>  
+    <div>
+      <div id="languagesInput<?PHP echo $i;?>" data_id="<?PHP echo $i;?>" class="form-group">
+        <label for="languages" class="col-sm-2 control-label">Languages </label>
+        <div class="col-sm-6">
+          <div class="control-group">
+          <div class="controls">
+          <div class="input-prepend input-group col-sm-8">
+          <input type="text" id="languagesInputText[]" readonly class="form-control input-prepend existinglanguages" name="languages" placeholder="Languages"  value="<?PHP echo $languages[$i];?>"/>
+          </div>
+        </div>
+      </div>
+    </div>
+    <i class="fa  btn btn-danger remove_existing_language"  data_id="<?PHP echo $i;?>"><span class="glyphicon glyphicon-trash"></span> Delete</i></div></div>
+    <?PHP }?>   
+  </div>
+  <i id="addMoreLanguage" class='addMore fa fa-credit-card btn btn-success'>Add New Language</i>     
+  </div>
+  <div class="form-group">
+      <label for="title">Rights</label>
+     <select name = "rights" class = "form-control select2">
+          <?= $rights_select; ?>
+      </select>
+    </div>
+  
+  <div class="form-group">
+      <label for="title">Type</label>
+        <select name = "type" class = "form-control select2">
+          <?= $decision_types_select; ?>
+        </select>
+    </div>
+    <div class="form-group">
+      <label for="title">Publisher</label>
+      <input type="text" name="publisher" class="form-control" id="publisherInput" placeholder="Publisher"  value="<?PHP echo $publisher;?>">
+    </div>
+    <div class="form-group">
+      <label>Date Issued:</label>
+        <div class="input-group">
+          <div class="input-group-addon">
+            <i class="fa fa-calendar"></i>
+          </div>
+        <input type="text" class="form-control pull-right" id="date_issued" name="date_issued"  value="<?PHP echo $date_issued;?>">
+      </div><!-- /.input group -->
+    </div><!-- /.form group -->
+    
+  <div class="form-group">
+      <label for="title">Meeting ID</label>
+      <select name="meeting_id" class="form-control" id="meeting_idInput"></select>
+    </div>    
+    <div class="form-group">
+      <label for="title">Url</label>
+      <input type="text" name="url" class="form-control" id="urlInput" placeholder="Url"  value="<?PHP echo $url;?>">
+    </div>
+  <div class="form-group">
+      <label for="title">Status</label>
+      <select name = "status" class = "form-control select2">
+          <?= $status_select; ?>
+      </select>
+    </div> 
+  <div class="form-group">
+      <label for="title">Treaty</label>
+      <select name = "treaty" class = "form-control select2">
+          <?= $treaty_select; ?>
+      </select>
+    </div>  
+    <div class="form-group">
+      <label for="title">Number</label>
+      <input type="text" name="number" class="form-control" id="NumberInput" placeholder="Number"  value="<?PHP echo $number;?>">
+    </div>
+    <div class="form-group">
+      <label for="displayInput">Display Order</label>
+      <input type="text" name="displayorder" class="form-control" id="displayInput" placeholder="Display Order"  value="<?PHP echo $displayorder;?>">
+    </div>  
+     
+    <div class="form-group">
+      <label for="exampleInputFile">File input</label>
+      <input type="file" id="documentFile" name="fileOne">
+	  <br/>
+	  <select name = "language"   id="language" class = "form-control select2">
+		  <option value="0">Select File Language</option>
+		  <option value="ar">Arabic</option>
+		  <option value="zh">Chinese</option>
+		  <option value="en">English</option>
+		  <option value="fr">French</option>
+		  <option value="ru">Russian</option>
+		  <option value="es">Spanish</option>
+      </select> 
+      <p class="help-block">Upload the relevant file.</p>
+    </div>
+  </div><!-- /.box-body -->
+
+  <div class="box-footer">
+    <button type="submit" id="btn-submit" class="btn btn-primary">Save</button>
+  </div>
+  </form>
+</div><!-- /.box -->
