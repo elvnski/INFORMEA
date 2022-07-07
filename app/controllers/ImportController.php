@@ -30,22 +30,6 @@ class ImportController extends BaseController{
         set_time_limit(0);
         header('Content-type: text/plain; charset=utf-8');
         $this->view->disable();
-        $type = "";
-        switch ($collectionID) {
-            case 1:
-                $type = "meetings";
-                break;
-            case 2;
-                $type = "contacts";
-                break;
-            case 3:
-                $type = "decisions";
-                break;
-            case 4:
-                $type = "reports";
-                break;
-
-        }
 
         $this->getDspaceData($collectionID);
 
