@@ -274,9 +274,6 @@ class ImportController extends BaseController{
             $records2->delete();
 
 
-
-
-
             for ($i = 0, $iMax = count($MappedData); $i < $iMax; $i++) {
 
                 $CR_Model = new CountryReports();
@@ -313,10 +310,6 @@ class ImportController extends BaseController{
                 $CRT_Model->setTitle(array_key_exists("title", $MappedData[$i]['country_reports_title']) ? $MappedData[$i]['country_reports_title']['title'] : "");
 
                 $CRT_Model->save();
-
-
-
-
 
 
             }
@@ -504,10 +497,10 @@ class ImportController extends BaseController{
             }
         }
 
-        echo "\n\n COLLECTION DETAILS FOR " . $coll_name;
-        echo "\n";
-        print_r($CollectionDetails);
-        echo "\n\n";
+//        echo "\n\n COLLECTION DETAILS FOR " . $coll_name;
+//        echo "\n";
+//        print_r($CollectionDetails);
+//        echo "\n\n";
 
         $data = array();
         for ($i = 0, $iMax = count($CollectionDetails); $i < $iMax; $i++) {
@@ -530,10 +523,7 @@ class ImportController extends BaseController{
                         echo "\n\n" . $Collection_UUID . " is empty.\n\n";
                     }
 
-                    echo "\n\n The url is " . $url3 . "\n\n";
 
-                    echo "\n\n The data part is \n";
-                    print_r($lc_data);
 
                     $LCD = array_merge($LCD, $lc_data);
 
@@ -544,9 +534,9 @@ class ImportController extends BaseController{
 
                 }
 
-                echo "\n\n >>>>>>>> THIS IS SPECIFIC LIBRARY CATALOG DATA FOR " . $coll_name . " entry no. " . $i . " with uuid " . $Collection_UUID . " <<<<<<<<<<<\n\n";
-                print_r($data[$i]);
-                echo "\n\n";
+//                echo "\n\n >>>>>>>> THIS IS SPECIFIC LIBRARY CATALOG DATA FOR " . $coll_name . " entry no. " . $i . " with uuid " . $Collection_UUID . " <<<<<<<<<<<\n\n";
+//                print_r($data[$i]);
+//                echo "\n\n";
 
             }
 
@@ -567,10 +557,6 @@ class ImportController extends BaseController{
                         echo "\n\n" . $Collection_UUID . " is empty.\n\n";
                     }
 
-                    echo "\n\n The url is " . $url3 . "\n\n";
-
-                    echo "\n\n The data part is \n";
-                    print_r($md_data);
 
                     $MDD = array_merge($MDD, $md_data);
 
@@ -582,9 +568,9 @@ class ImportController extends BaseController{
                 }
 
 
-                echo "\n\n >>>>>>>> THIS IS SPECIFIC MEETING DOCUMENTS DATA FOR " . $coll_name . " entry no. " . $i . " with uuid " . $Collection_UUID . " <<<<<<<<<<<\n\n";
-                print_r($data[$i]);
-                echo "\n\n";
+//                echo "\n\n >>>>>>>> THIS IS SPECIFIC MEETING DOCUMENTS DATA FOR " . $coll_name . " entry no. " . $i . " with uuid " . $Collection_UUID . " <<<<<<<<<<<\n\n";
+//                print_r($data[$i]);
+//                echo "\n\n";
             }
 
             else {
