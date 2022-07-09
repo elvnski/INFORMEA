@@ -18,7 +18,6 @@ class ImportController extends BaseController{
     public function indexAction()
     {
         echo 'This is ImportController';
-        die;
     }
 
     public function MapDspaceAction($collectionID){
@@ -140,7 +139,6 @@ class ImportController extends BaseController{
                 $CT_Model->setTreaty(array_key_exists("treaty", $MappedData[$i]['contact_treaty']) ? $MappedData[$i]['contact_treaty']['treaty'] : "");
 
                 $CT_Model->save();
-
 
             }
 
@@ -311,7 +309,6 @@ class ImportController extends BaseController{
 
                 $CRT_Model->save();
 
-
             }
 
 
@@ -342,8 +339,6 @@ class ImportController extends BaseController{
                 $GD_Model->setUpdated(array_key_exists("updated", $MappedData[$i]['general_documents']) ? $MappedData[$i]['general_documents']['updated'] : "");
 
                 $GD_Model->save();
-
-
 
             }
 
@@ -1241,7 +1236,6 @@ class ImportController extends BaseController{
             $MappedData = $Publications_data;
 
         }
-
 
 
         return $MappedData;
