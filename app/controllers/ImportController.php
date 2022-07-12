@@ -576,9 +576,10 @@ class ImportController extends BaseController{
                 if (!$data[$i]) {
                     echo "\n\n" . $Collection_UUID . " is empty.\n\n";
                 } else {
-                    echo ">>>>>>>> THIS IS SPECIFIC COLLECTION DATA FOR " . $coll_name . " entry no. " . $i . " with uuid " . $Collection_UUID . " <<<<<<<<<<<\n\n";
-                    print_r($data[$i]);
-                    echo "\n\n";
+                    echo ">>>>>>>> FOUND THE SPECIFIC COLLECTION DATA FOR " . $coll_name . " entry no. " . $i . " with uuid " . $Collection_UUID . " <<<<<<<<<<<\n\n";
+
+//                    print_r($data[$i]);
+//                    echo "\n\n";
                 }
 
             }
