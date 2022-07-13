@@ -96,6 +96,8 @@ class ImportController extends BaseController{
 
             }
 
+            echo "\n\n MEETING DOCUMENTS COLLECTION DATA UPDATED! \n\n";
+
         }
 
 
@@ -141,6 +143,9 @@ class ImportController extends BaseController{
                 $CT_Model->save();
 
             }
+
+            echo "\n\n CONTACTS COLLECTION DATA UPDATED! \n\n";
+
 
         }
 
@@ -258,6 +263,9 @@ class ImportController extends BaseController{
                 $DT_Model->save();
 
             }
+
+            echo "\n\n DECISIONS COLLECTION DATA UPDATED! \n\n";
+
         }
 
 
@@ -311,7 +319,7 @@ class ImportController extends BaseController{
 
             }
 
-
+            echo "\n\n COUNTRY REPORTS COLLECTION DATA UPDATED! \n\n";
 
         }
 
@@ -341,6 +349,9 @@ class ImportController extends BaseController{
                 $GD_Model->save();
 
             }
+
+            echo "\n\n GENERAL DOCUMENTS COLLECTION DATA UPDATED! \n\n";
+
 
         }
 
@@ -378,6 +389,9 @@ class ImportController extends BaseController{
 
 
             }
+
+            echo "\n\n LIBRARY CATALOG COLLECTION DATA UPDATED! \n\n";
+
 
         }
 
@@ -420,6 +434,10 @@ class ImportController extends BaseController{
                 $Pub_Model->save();
 
             }
+
+            echo "\n\n PUBLICATIONS COLLECTION DATA UPDATED! \n\n";
+
+
         }
 
     }
@@ -510,15 +528,13 @@ class ImportController extends BaseController{
                 $offset = 0;
                 $retrieved = 223;
                 while ($retrieved <= 2230) {
-                    $url3 = "collections/" . $Collection_UUID . "/items?limit=223&offset=" . $offset;
+                    $url4 = "collections/" . $Collection_UUID . "/items?limit=223&offset=" . $offset;
 
-                    $res3 = $this->dspace->get($url3, ['verify' => false, 'headers' => $headers]);
-                    $lc_data = json_decode($res3->getBody(), true);
+                    $res4 = $this->dspace->get($url4, ['verify' => false, 'headers' => $headers]);
+                    $lc_data = json_decode($res4->getBody(), true);
                     if (!$lc_data) {
                         echo "\n\n" . $Collection_UUID . " is empty.\n\n";
                     }
-
-
 
                     $LCD = array_merge($LCD, $lc_data);
 
@@ -542,9 +558,9 @@ class ImportController extends BaseController{
 
                 // looping with offsets
                 $offset = 0;
-                $retrieved = 261;
+                $retrieved = 522;
                 while ($retrieved <= 7308) {
-                    $url3 = "collections/" . $Collection_UUID . "/items?limit=261&offset=" . $offset;
+                    $url3 = "collections/" . $Collection_UUID . "/items?limit=522&offset=" . $offset;
 
                     $res3 = $this->dspace->get($url3, ['verify' => false, 'headers' => $headers]);
                     $md_data = json_decode($res3->getBody(), true);
@@ -557,8 +573,8 @@ class ImportController extends BaseController{
 
                     $data[$i] = $MDD;
 
-                    $retrieved += 261;
-                    $offset += 261;
+                    $retrieved += 522;
+                    $offset += 522;
 
                 }
 
@@ -576,7 +592,7 @@ class ImportController extends BaseController{
                 if (!$data[$i]) {
                     echo "\n\n" . $Collection_UUID . " is empty.\n\n";
                 } else {
-                    echo ">>>>>>>> FOUND THE SPECIFIC COLLECTION DATA FOR " . $coll_name . " entry no. " . $i . " with uuid " . $Collection_UUID . " <<<<<<<<<<<\n\n";
+                    echo "\n>>>>>>>> FOUND THE SPECIFIC COLLECTION DATA FOR " . $coll_name . " entry no. " . $i . " with uuid " . $Collection_UUID . " <<<<<<<<<<<\n\n";
 
 //                    print_r($data[$i]);
 //                    echo "\n\n";
@@ -620,9 +636,9 @@ class ImportController extends BaseController{
             $metadata[$i] = json_decode($res3->getBody(), true);
         }
 
-        echo "\n\n >>>>>>>>> THE COMPLETE METADATA FOR THE COLLECTION : " . $coll_name . " <<<<<<<<<<< \n\n";
-        print_r($metadata);
-        echo "\n\n";
+//        echo "\n\n >>>>>>>>> THE COMPLETE METADATA FOR THE COLLECTION : " . $coll_name . " <<<<<<<<<<< \n\n";
+//        print_r($metadata);
+//        echo "\n\n";
 
         $data_json = json_encode($metadata);
         $dataFile = fopen("{$file}.json", "wb");
@@ -734,8 +750,8 @@ class ImportController extends BaseController{
             }
 
 
-            echo "\n\n THE MAPPED DATA ARRAY FOR " . $coll_name . "\n\n";
-            print_r($Meetings_data);
+//            echo "\n\n THE MAPPED DATA ARRAY FOR " . $coll_name . "\n\n";
+//            print_r($Meetings_data);
 
             $MappedData = $Meetings_data;
 
@@ -799,8 +815,8 @@ class ImportController extends BaseController{
 
             }
 
-            echo "\n\n THE MAPPED DATA ARRAY FOR " . $coll_name . "\n\n";
-            print_r($Contacts_data);
+//            echo "\n\n THE MAPPED DATA ARRAY FOR " . $coll_name . "\n\n";
+//            print_r($Contacts_data);
 
             $MappedData = $Contacts_data;
 
@@ -922,8 +938,8 @@ class ImportController extends BaseController{
                 }
             }
 
-            echo "\n\n THE MAPPED DATA ARRAY FOR " . $coll_name . "\n\n";
-            print_r($Decisions_data);
+//            echo "\n\n THE MAPPED DATA ARRAY FOR " . $coll_name . "\n\n";
+//            print_r($Decisions_data);
 
             $MappedData = $Decisions_data;
         }
@@ -997,8 +1013,8 @@ class ImportController extends BaseController{
                 }
             }
 
-            echo "\n\n THE MAPPED DATA ARRAY FOR " . $coll_name . "\n\n";
-            print_r($CReports_data);
+//            echo "\n\n THE MAPPED DATA ARRAY FOR " . $coll_name . "\n\n";
+//            print_r($CReports_data);
 
             $MappedData = $CReports_data;
 
@@ -1050,8 +1066,8 @@ class ImportController extends BaseController{
             }
 
 
-            echo "\n\n THE MAPPED DATA ARRAY FOR " . $coll_name . "\n\n";
-            print_r($GenDocs_data);
+//            echo "\n\n THE MAPPED DATA ARRAY FOR " . $coll_name . "\n\n";
+//            print_r($GenDocs_data);
 
             $MappedData = $GenDocs_data;
 
@@ -1133,8 +1149,8 @@ class ImportController extends BaseController{
             }
 
 
-            echo "\n\n THE MAPPED DATA ARRAY FOR " . $coll_name . "\n\n";
-            print_r($LibCat_data);
+//            echo "\n\n THE MAPPED DATA ARRAY FOR " . $coll_name . "\n\n";
+//            print_r($LibCat_data);
 
             $MappedData = $LibCat_data;
 
@@ -1231,8 +1247,8 @@ class ImportController extends BaseController{
                 }
             }
 
-            echo "\n\n THE MAPPED DATA ARRAY FOR " . $coll_name . "\n\n";
-            print_r($Publications_data);
+//            echo "\n\n THE MAPPED DATA ARRAY FOR " . $coll_name . "\n\n";
+//            print_r($Publications_data);
 
             $MappedData = $Publications_data;
 
