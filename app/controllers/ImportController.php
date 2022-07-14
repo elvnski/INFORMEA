@@ -600,8 +600,6 @@ class ImportController extends BaseController{
 
             }
 
-
-
             //Skipping the unofficial meeting documents on index 30
             if ($coll_name === "Meeting Documents") {
                 $i++;
@@ -613,7 +611,6 @@ class ImportController extends BaseController{
 //        echo "THIS IS THE FULL DATA FOR " . $coll_name;
 //        echo "\n";
 //        print_r($data);
-
 
         //Getting the uuid for each item in the collection
         $meta_id = array();
@@ -699,8 +696,6 @@ class ImportController extends BaseController{
                     $Meetings_data[$i]['meeting_title']['meeting_id'] = ($i + 1);
 
 
-
-
                     if ($meets_array[$i][$j]['key'] === "wd.meeting.treaty"){
                         $Meetings_data[$i]['meetings']['treaty'] = $meets_array[$i][$j]['value'];
                     }
@@ -745,10 +740,8 @@ class ImportController extends BaseController{
 
                     }
 
-
                 }
             }
-
 
 //            echo "\n\n THE MAPPED DATA ARRAY FOR " . $coll_name . "\n\n";
 //            print_r($Meetings_data);
@@ -774,7 +767,6 @@ class ImportController extends BaseController{
                     $Contacts_data[$i]['contacts']['id'] = ($i + 1);
                     $Contacts_data[$i]['contacts']['updated'] = date("D M j G:i:s T Y");
                     $Contacts_data[$i]['contact_treaty']['contact_id'] = ($i + 1);
-
 
 
                     if ($contacts_array[$i][$j]['key'] === "unepmap.contact.country"){
@@ -808,8 +800,6 @@ class ImportController extends BaseController{
                     else if ($contacts_array[$i][$j]['key'] === "unepmap.identifier.treaty") {
                         $Contacts_data[$i]['contact_treaty']['treaty'] = $contacts_array[$i][$j]['value'];
                     }
-
-
 
                 }
 
@@ -849,7 +839,6 @@ class ImportController extends BaseController{
 
                     //blank columns for decisions_summary
                     $Decisions_data[$i]['decisions_summary']['summary'] = "N/A";
-
 
 
                     //>>>>> SETTING decision_id AND updated<<<<<<<
@@ -930,10 +919,7 @@ class ImportController extends BaseController{
                         //FOR decisions_title
                         $Decisions_data[$i]['decisions_title']['language'] .= " ," . $decisions_array[$i][$j]['value'];
 
-
-
                     }
-
 
                 }
             }
@@ -967,8 +953,6 @@ class ImportController extends BaseController{
 
                     $CReports_data[$i]['country_reports_title']['id'] = ($i + 1);
                     $CReports_data[$i]['country_reports_title']['country_report_id'] = ($i + 1);
-
-
 
 
                     if ($reports_array[$i][$j]['key'] === "unepmap.identifier.treaty"){
@@ -1007,8 +991,6 @@ class ImportController extends BaseController{
                     else if ($reports_array[$i][$j]['key'] === "dc.title"){
                         $CReports_data[$i]['country_reports_title']['title'] = $reports_array[$i][$j]['value'];
                     }
-
-
 
                 }
             }
@@ -1064,7 +1046,6 @@ class ImportController extends BaseController{
 
                 }
             }
-
 
 //            echo "\n\n THE MAPPED DATA ARRAY FOR " . $coll_name . "\n\n";
 //            print_r($GenDocs_data);
@@ -1170,7 +1151,6 @@ class ImportController extends BaseController{
                     //SETTING the id and updated
                     $Publications_data[$i]['publications']['id'] = ($i + 1);
                     $Publications_data[$i]['publications']['updated'] = date("D M j G:i:s T Y");
-
 
 
                     if ($pub_array[$i][$j]['key'] === "dc.title"){
