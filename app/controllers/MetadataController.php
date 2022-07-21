@@ -8,7 +8,7 @@ class MetadataController extends BaseController
     public function initialize()
     {
         $this->view->auth = $this->session->get('auth');
-		 $this->token = $this->session->get('token'); 
+        $this->token = $this->session->get('token');
 		$auth = $this->session->get('auth');
 		if($auth == null){
             $this->response->redirect("user/"); 

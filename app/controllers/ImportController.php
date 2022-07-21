@@ -3,16 +3,16 @@
 class ImportController extends BaseController{
 
 
-//    public function initialize()
-//    {
-////        $this->view->auth = $this->session->get('auth');
-////        $this->token = $this->session->get('token');
-//        $auth = $this->session->get('auth');
-//        if($auth === null){
-//            $this->response->redirect("user/");
-//            $this->view->disable();
-//        }
-//    }
+    public function initialize()
+    {
+        $this->view->auth = $this->session->get('auth');
+        $this->token = $this->session->get('token');
+        $auth = $this->session->get('auth');
+        if($auth === null){
+            $this->response->redirect("user/");
+            $this->view->disable();
+        }
+    }
 
 
     public function indexAction()
@@ -687,7 +687,7 @@ class ImportController extends BaseController{
 
                     //SETTING id and updated
                     $Meetings_data[$i]['meetings']['id'] = ($i + 1);
-                    $Meetings_data[$i]['meetings']['updated'] = date("D M j G:i:s T Y");
+                    $Meetings_data[$i]['meetings']['updated'] = date("d/m/Y H:i:s");;
 
                     $Meetings_data[$i]['meetings_description']['id'] = ($i + 1);
                     $Meetings_data[$i]['meetings_description']['meeting_id'] = ($i + 1);
@@ -765,7 +765,7 @@ class ImportController extends BaseController{
 
                     //SETTING contact_id AND updated
                     $Contacts_data[$i]['contacts']['id'] = ($i + 1);
-                    $Contacts_data[$i]['contacts']['updated'] = date("D M j G:i:s T Y");
+                    $Contacts_data[$i]['contacts']['updated'] = date("d/m/Y H:i:s");
                     $Contacts_data[$i]['contact_treaty']['contact_id'] = ($i + 1);
 
 
@@ -843,7 +843,7 @@ class ImportController extends BaseController{
 
                     //>>>>> SETTING decision_id AND updated<<<<<<<
                     $Decisions_data[$i]['decisions']['id'] = ($i + 1);
-                    $Decisions_data[$i]['decisions']['updated'] = date("D M j G:i:s T Y");
+                    $Decisions_data[$i]['decisions']['updated'] =date("d/m/Y H:i:s");
 
                     $Decisions_data[$i]['decisions_documents']['id'] = ($i + 1);
                     $Decisions_data[$i]['decisions_documents']['decision_id'] = ($i + 1);//Adding 1 coz counter is zero-based
@@ -946,7 +946,7 @@ class ImportController extends BaseController{
 
                     //SETTING id's AND updated
                     $CReports_data[$i]['country_reports']['id'] = ($i + 1);
-                    $CReports_data[$i]['country_reports']['updated'] = date("D M j G:i:s T Y");
+                    $CReports_data[$i]['country_reports']['updated'] = date("d/m/Y H:i:s");
 
                     $CReports_data[$i]['country_reports_documents']['id'] = ($i + 1);
                     $CReports_data[$i]['country_reports_documents']['country_report_id'] = ($i + 1);
@@ -1015,7 +1015,7 @@ class ImportController extends BaseController{
 
                     //SETTING id AND updated
                     $GenDocs_data[$i]['general_documents']['id'] = ($i + 1);
-                    $GenDocs_data[$i]['general_documents']['updated'] = date("D M j G:i:s T Y");
+                    $GenDocs_data[$i]['general_documents']['updated'] =date("d/m/Y H:i:s");
 
 
                     if ($gendocs_array[$i][$j]['key'] === "dc.title"){
@@ -1067,7 +1067,7 @@ class ImportController extends BaseController{
 
                     //SETTING id AND updated
                     $LibCat_data[$i]['library_catalog']['id'] = ($i + 1);
-                    $LibCat_data[$i]['library_catalog']['updated'] = date("D M j G:i:s T Y");
+                    $LibCat_data[$i]['library_catalog']['updated'] =date("d/m/Y H:i:s");
 
 
                     if ($libcat_array[$i][$j]['key'] === "dc.title"){
@@ -1150,7 +1150,7 @@ class ImportController extends BaseController{
 
                     //SETTING the id and updated
                     $Publications_data[$i]['publications']['id'] = ($i + 1);
-                    $Publications_data[$i]['publications']['updated'] = date("D M j G:i:s T Y");
+                    $Publications_data[$i]['publications']['updated'] =date("d/m/Y H:i:s");
 
 
                     if ($pub_array[$i][$j]['key'] === "dc.title"){
