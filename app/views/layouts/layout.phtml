@@ -96,7 +96,7 @@
               <a href="#">
                 <i class="fa fa-dashboard"></i> <span>Document Categories</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
-              <ul class="treeview-menu">
+              <ul class="treeview-menu" style="cursor: pointer;">
                   <li class="<?PHP echo $class;?>"><?= $this->tag->linkTo("category/list/2", "<i class='fa fa-circle-o'></i> Contacts"); ?></li>
                   <li class="<?PHP echo $class;?>"><?= $this->tag->linkTo("category/list/1", "<i class='fa fa-circle-o'></i> Country Reports"); ?></li>
                   <li class="<?PHP echo $class;?>"><?= $this->tag->linkTo("category/list/3", "<i class='fa fa-circle-o'></i> Decisions"); ?></li>
@@ -136,6 +136,40 @@
           <h1>
             <?= $title ?>
           </h1>
+
+            <h5 style="display: flex">
+                <?PHP
+                $Collections = new Collections();
+
+                if ($title === "Meetings") {
+                    $records = (new Meetings())::count();
+                    $updated = ((new Meetings())::findFirst("id = '1'"))->updated;
+                }elseif ($title === "Contacts") {
+                    $records = (new Contacts())::count();
+                    $updated = ((new Contacts())::findFirst("id = '1'"))->updated;
+                }elseif ($title === "Decisions") {
+                    $records = (new Decisions())::count();
+                    $updated = ((new Decisions())::findFirst("id = '1'"))->updated;
+                }elseif ($title === "Country Reports") {
+                    $records = (new CountryReports())::count();
+                    $updated = ((new CountryReports())::findFirst("id = '1'"))->updated;
+                }elseif ($title === "General Documents") {
+                    $records = (new GeneralDocuments())::count();
+                    $updated = ((new GeneralDocuments())::findFirst("id = '1'"))->updated;
+                }elseif ($title === "Library Catalog") {
+                    $records = (new LibraryCatalog())::count();
+                    $updated = ((new LibraryCatalog())::findFirst("id = '1'"))->updated;
+                }elseif ($title === "Publications") {
+                    $records = (new Publications())::count();
+                    $updated = ((new Publications())::findFirst("id = '1'"))->updated;
+                }
+
+                ?>
+                Records : <?= $records ?>
+            </h5>
+            <h5>
+                Updated : <?= $updated ?>
+            </h5>
           <!--<ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
             <li class="active">Dashboard</li>
