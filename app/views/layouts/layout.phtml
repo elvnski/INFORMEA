@@ -133,47 +133,65 @@
       <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
-          <h1>
+          <h1 style="font-size: 36px">
             <?= $title ?>
           </h1>
 
-            <h5 style="display: flex">
-                <?PHP
-                $Collections = new Collections();
 
-                if ($title === "Meetings") {
-                    $records = (new Meetings())::count();
-                    $updated = ((new Meetings())::findFirst("id = '1'"))->updated;
-                }elseif ($title === "Contacts") {
-                    $records = (new Contacts())::count();
-                    $updated = ((new Contacts())::findFirst("id = '1'"))->updated;
-                }elseif ($title === "Decisions") {
-                    $records = (new Decisions())::count();
-                    $updated = ((new Decisions())::findFirst("id = '1'"))->updated;
-                }elseif ($title === "Country Reports") {
-                    $records = (new CountryReports())::count();
-                    $updated = ((new CountryReports())::findFirst("id = '1'"))->updated;
-                }elseif ($title === "General Documents") {
-                    $records = (new GeneralDocuments())::count();
-                    $updated = ((new GeneralDocuments())::findFirst("id = '1'"))->updated;
-                }elseif ($title === "Library Catalog") {
-                    $records = (new LibraryCatalog())::count();
-                    $updated = ((new LibraryCatalog())::findFirst("id = '1'"))->updated;
-                }elseif ($title === "Publications") {
-                    $records = (new Publications())::count();
-                    $updated = ((new Publications())::findFirst("id = '1'"))->updated;
-                }
+        <?PHP
+        $Collections = new Collections();
 
-                ?>
-                Records : <?= $records ?>
-            </h5>
-            <h5>
+        if ($title === "Meetings") {
+            $records = (new Meetings())::count();
+            $updated = ((new Meetings())::findFirst("id = '1'"))->updated;
+            $link = "http://localhost/informea/import/mapdspace/1";
+        }elseif ($title === "Contacts") {
+            $records = (new Contacts())::count();
+            $updated = ((new Contacts())::findFirst("id = '1'"))->updated;
+            $link = "http://localhost/informea/import/mapdspace/2";
+        }elseif ($title === "Decisions") {
+            $records = (new Decisions())::count();
+            $updated = ((new Decisions())::findFirst("id = '1'"))->updated;
+            $link = "http://localhost/informea/import/mapdspace/3";
+        }elseif ($title === "Country Reports") {
+            $records = (new CountryReports())::count();
+            $updated = ((new CountryReports())::findFirst("id = '1'"))->updated;
+            $link = "http://localhost/informea/import/mapdspace/4";
+        }elseif ($title === "General Documents") {
+            $records = (new GeneralDocuments())::count();
+            $updated = ((new GeneralDocuments())::findFirst("id = '1'"))->updated;
+            $link = "http://localhost/informea/import/mapdspace/5";
+        }elseif ($title === "Library Catalog") {
+            $records = (new LibraryCatalog())::count();
+            $updated = ((new LibraryCatalog())::findFirst("id = '1'"))->updated;
+            $link = "http://localhost/informea/import/mapdspace/6";
+        }elseif ($title === "Publications") {
+            $records = (new Publications())::count();
+            $updated = ((new Publications())::findFirst("id = '1'"))->updated;
+            $link = "http://localhost/informea/import/mapdspace/7";
+        }
+
+        ?>
+
+
+        <?PHP
+        if($title !== "Users"){
+        ?>
+            <span style="display: flex; padding-top: 16px; padding-bottom: 16px;">
+                Records : <?= $records . "  |  " ?>
                 Updated : <?= $updated ?>
-            </h5>
-          <!--<ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">Dashboard</li>
-          </ol>-->
+            </span>
+
+        <button type = "button"
+                style= "background-color: #1ab7ea; color: #0c0c0c; border-color: transparent;"
+                onclick=" window.open('<?= $link ?>') "> Update Collection </button>
+        <?PHP } ?>
+
+
+<!--          <ol class="breadcrumb">-->
+<!--            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>-->
+<!--            <li class="active">Dashboard</li>-->
+<!--          </ol>-->
         </section>
 
         <!-- Main content -->

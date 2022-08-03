@@ -595,8 +595,8 @@ class ImportController extends BaseController{
                 } else {
                     echo "\n>>>>>>>> FOUND THE SPECIFIC COLLECTION DATA FOR " . $coll_name . " entry no. " . $i . " with uuid " . $Collection_UUID . " <<<<<<<<<<<\n\n";
 
-//                    print_r($data[$i]);
-//                    echo "\n\n";
+                    print_r($data[$i]);
+                    echo "\n\n";
                 }
 
             }
@@ -608,10 +608,10 @@ class ImportController extends BaseController{
             }
         }
 
-//        echo "\n\n";
-//        echo "THIS IS THE FULL DATA FOR " . $coll_name;
-//        echo "\n";
-//        print_r($data);
+        echo "\n\n";
+        echo "THIS IS THE FULL DATA FOR " . $coll_name;
+        echo "\n";
+        print_r($data);
 
         //Getting the uuid for each item in the collection
         $meta_id = array();
@@ -634,9 +634,9 @@ class ImportController extends BaseController{
             $metadata[$i] = json_decode($res3->getBody(), true);
         }
 
-//        echo "\n\n >>>>>>>>> THE COMPLETE METADATA FOR THE COLLECTION : " . $coll_name . " <<<<<<<<<<< \n\n";
-//        print_r($metadata);
-//        echo "\n\n";
+        echo "\n\n >>>>>>>>> THE COMPLETE METADATA FOR THE COLLECTION : " . $coll_name . " <<<<<<<<<<< \n\n";
+        print_r($metadata);
+        echo "\n\n";
 
         $data_json = json_encode($metadata);
         $dataFile = fopen("{$file}.json", "wb");
@@ -867,7 +867,7 @@ class ImportController extends BaseController{
 
                     if ($decisions_array[$i][$j]['key'] === "dc.type"){
                         //Here we concatenate the type because one decision may have more than one type
-                        $Decisions_data[$i]['decisions']['type'] .= ", " . $decisions_array[$i][$j]['value'];
+                        $Decisions_data[$i]['decisions']['type'] .= $decisions_array[$i][$j]['value'] . ", ";
                     }
 
                     else if ($decisions_array[$i][$j]['key'] === "unepmap.identifier.status"){
@@ -957,10 +957,10 @@ class ImportController extends BaseController{
 
 
                     if ($reports_array[$i][$j]['key'] === "unepmap.identifier.treaty"){
-                        $CReports_data[$i]['country_reports']['treaty'] .= ", " . $reports_array[$i][$j]['value'];
+                        $CReports_data[$i]['country_reports']['treaty'] .= $reports_array[$i][$j]['value'] . ", ";
                     }
                     else if ($reports_array[$i][$j]['key'] === "unepmap.identifier.country"){
-                        $CReports_data[$i]['country_reports']['country'] .= ", " . $reports_array[$i][$j]['value'];
+                        $CReports_data[$i]['country_reports']['country'] .= $reports_array[$i][$j]['value'] . ", ";
                     }
                     //Using dc.date.issued as 'submission'
                     else if ($reports_array[$i][$j]['key'] === "dc.date.issued"){
@@ -981,10 +981,10 @@ class ImportController extends BaseController{
                         $CReports_data[$i]['country_reports_documents']['author'] = $reports_array[$i][$j]['value'];
                     }
                     else if ($reports_array[$i][$j]['key'] === "dc.language"){
-                        $CReports_data[$i]['country_reports_documents']['language'] .= ", " . $reports_array[$i][$j]['value'];
+                        $CReports_data[$i]['country_reports_documents']['language'] .= $reports_array[$i][$j]['value'] . ", ";
 
                         //FOR country_reports_title
-                        $CReports_data[$i]['country_reports_title']['language'] .= ", " . $reports_array[$i][$j]['value'];
+                        $CReports_data[$i]['country_reports_title']['language'] .= $reports_array[$i][$j]['value'] . ", ";
 
                     }
 
