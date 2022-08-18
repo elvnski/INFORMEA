@@ -129,8 +129,20 @@ try {
             ]
         );
         */
-        
+
         return $crowd;
+    });
+
+    $di->set('staging', function () use ($config) {
+        $staging_url = $config->staging->baseUrl;
+
+        return $staging_url;
+    });
+
+    $di->set('local', function () use ($config) {
+       $local_url = $config->local->baseUrl;
+
+       return $local_url;
     });
 
 

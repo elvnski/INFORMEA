@@ -25,7 +25,15 @@ return new \Phalcon\Config(array(
 		'username' => 'root',
 		'password' => '',
 		'name'     => 'informea',
-	)
+	),
+
+    'local' => array(
+        'baseUrl' => 'http://localhost/informea/'
+    ),
+
+    'staging' => array(
+        'baseUrl' => 'https://staging1.unep.org/informea/'
+    )
 	
 ));
 

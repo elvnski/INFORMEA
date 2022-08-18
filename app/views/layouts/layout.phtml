@@ -139,36 +139,46 @@
 
 
         <?PHP
+
+        $whitelist = array('127.0.0.1', '::1');
+
+        //checks the deployment environment
+        if(in_array($_SERVER['REMOTE_ADDR'], $whitelist)){
+            $base_url = $this->local;
+        } else {
+            $base_url = $this->staging;
+        }
+
         $Collections = new Collections();
 
         if ($title === "Meetings") {
             $records = (new Meetings())::count();
             $updated = ((new Meetings())::findFirst("id = '1'"))->updated;
-            $link = "http://localhost/informea/import/mapdspace/1";
+            $link = $base_url . "import/mapdspace/1";
         }elseif ($title === "Contacts") {
             $records = (new Contacts())::count();
             $updated = ((new Contacts())::findFirst("id = '1'"))->updated;
-            $link = "http://localhost/informea/import/mapdspace/2";
+            $link = $base_url . "import/mapdspace/2";
         }elseif ($title === "Decisions") {
             $records = (new Decisions())::count();
             $updated = ((new Decisions())::findFirst("id = '1'"))->updated;
-            $link = "http://localhost/informea/import/mapdspace/3";
+            $link = $base_url . "import/mapdspace/3";
         }elseif ($title === "Country Reports") {
             $records = (new CountryReports())::count();
             $updated = ((new CountryReports())::findFirst("id = '1'"))->updated;
-            $link = "http://localhost/informea/import/mapdspace/4";
+            $link = $base_url . "import/mapdspace/4";
         }elseif ($title === "General Documents") {
             $records = (new GeneralDocuments())::count();
             $updated = ((new GeneralDocuments())::findFirst("id = '1'"))->updated;
-            $link = "http://localhost/informea/import/mapdspace/5";
+            $link = $base_url . "import/mapdspace/5";
         }elseif ($title === "Library Catalog") {
             $records = (new LibraryCatalog())::count();
             $updated = ((new LibraryCatalog())::findFirst("id = '1'"))->updated;
-            $link = "http://localhost/informea/import/mapdspace/6";
+            $link = $base_url . "import/mapdspace/6";
         }elseif ($title === "Publications") {
             $records = (new Publications())::count();
             $updated = ((new Publications())::findFirst("id = '1'"))->updated;
-            $link = "http://localhost/informea/import/mapdspace/7";
+            $link = $base_url . "import/mapdspace/7";
         }
 
         ?>
@@ -183,7 +193,13 @@
             </span>
 
         <button type = "button"
-                style= "background-color: #1ab7ea; color: #0c0c0c; border-color: transparent;"
+                style= "-webkit-appearance: none;
+                        -moz-appearance: none;
+                        appearance: none;
+                        background-color: #3e7fa9;
+                        color: #ffffff;
+                        border-color: transparent;
+                        padding: 3px 6px;"
                 onclick=" window.open('<?= $link ?>') "> Update Collection </button>
         <?PHP } ?>
 
