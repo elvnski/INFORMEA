@@ -34,411 +34,398 @@ class ImportController extends BaseController{
 
         $MappedData = $this->getColumnMapping($collectionID);
 
+        if(!$MappedData){
 
-        if($coll_name === "Meeting Documents"){
+            echo "COULD NOT UPDATE DATA BECAUSE THE COLLECTION IS EMPTY. \n\nPLEASE TRY AGAIN LATER.";
 
-            $Model = new Meetings();
-            $records = $Model::find();
-            $records->delete();
+        } else {
 
-            $M2 = new MeetingsDescription();
-            $records2 = $M2::find();
-            $records2->delete();
+            if ($coll_name === "Meeting Documents") {
 
-            $Model3 = new MeetingTitle();
-            $records3 = $Model3::find();
-            $records3->delete();
+                $Model = new Meetings();
+                $records = $Model::find();
+                $records->delete();
 
-            for ($i = 0, $iMax = count($MappedData); $i < $iMax; $i++) {
-                $M_Model = new Meetings();
+                $M2 = new MeetingsDescription();
+                $records2 = $M2::find();
+                $records2->delete();
 
-                $M_Model->setId(array_key_exists("id", $MappedData[$i]['meetings']) ? $MappedData[$i]['meetings']['id'] : "");
-                $M_Model->setTreaty(array_key_exists("treaty", $MappedData[$i]['meetings']) ? $MappedData[$i]['meetings']['treaty'] : "");
-                $M_Model->setUrl(array_key_exists("url", $MappedData[$i]['meetings']) ? $MappedData[$i]['meetings']['url'] : "");
-                $M_Model->setStart(array_key_exists("start", $MappedData[$i]['meetings']) ? $MappedData[$i]['meetings']['start'] : "");
-                $M_Model->setEnd(array_key_exists("end", $MappedData[$i]['meetings']) ? $MappedData[$i]['meetings']['end'] : "");
-                $M_Model->setRepetition(array_key_exists("repetition", $MappedData[$i]['meetings']) ? $MappedData[$i]['meetings']['repetition'] : "");
-                $M_Model->setKind(array_key_exists("kind", $MappedData[$i]['meetings']) ? $MappedData[$i]['meetings']['kind'] : "");
-                $M_Model->setType(array_key_exists("type", $MappedData[$i]['meetings']) ? $MappedData[$i]['meetings']['type'] : "");
-                $M_Model->setAccess(array_key_exists("access", $MappedData[$i]['meetings']) ? $MappedData[$i]['meetings']['access'] : "");
-                $M_Model->setStatus(array_key_exists("status", $MappedData[$i]['meetings']) ? $MappedData[$i]['meetings']['status'] : "");
-                $M_Model->setImageUrl(array_key_exists("imageUrl", $MappedData[$i]['meetings']) ? $MappedData[$i]['meetings']['imageUrl'] : "");
-                $M_Model->setImageCopyright(array_key_exists("imageCopyright", $MappedData[$i]['meetings']) ? $MappedData[$i]['meetings']['imageCopyright'] : "");
-                $M_Model->setLocation(array_key_exists("location", $MappedData[$i]['meetings']) ? $MappedData[$i]['meetings']['location'] : "");
-                $M_Model->setCity(array_key_exists("city", $MappedData[$i]['meetings']) ? $MappedData[$i]['meetings']['city'] : "");
-                $M_Model->setCountry(array_key_exists("country", $MappedData[$i]['meetings']) ? $MappedData[$i]['meetings']['country'] : "");
-                $M_Model->setLatitude(array_key_exists("latitude", $MappedData[$i]['meetings']) ? $MappedData[$i]['meetings']['latitude'] : "");
-                $M_Model->setLongitude(array_key_exists("longitude", $MappedData[$i]['meetings']) ? $MappedData[$i]['meetings']['longitude'] : "");
-                $M_Model->setAuthor(array_key_exists("author", $MappedData[$i]['meetings']) ? $MappedData[$i]['meetings']['author'] : "");
-                $M_Model->setUpdated(array_key_exists("updated", $MappedData[$i]['meetings']) ? $MappedData[$i]['meetings']['updated'] : "");
+                $Model3 = new MeetingTitle();
+                $records3 = $Model3::find();
+                $records3->delete();
 
-                $M_Model->save();
+                for ($i = 0, $iMax = count($MappedData); $i < $iMax; $i++) {
+                    $M_Model = new Meetings();
 
+                    $M_Model->setId(array_key_exists("id", $MappedData[$i]['meetings']) ? $MappedData[$i]['meetings']['id'] : "");
+                    $M_Model->setTreaty(array_key_exists("treaty", $MappedData[$i]['meetings']) ? $MappedData[$i]['meetings']['treaty'] : "");
+                    $M_Model->setUrl(array_key_exists("url", $MappedData[$i]['meetings']) ? $MappedData[$i]['meetings']['url'] : "");
+                    $M_Model->setStart(array_key_exists("start", $MappedData[$i]['meetings']) ? $MappedData[$i]['meetings']['start'] : "");
+                    $M_Model->setEnd(array_key_exists("end", $MappedData[$i]['meetings']) ? $MappedData[$i]['meetings']['end'] : "");
+                    $M_Model->setRepetition(array_key_exists("repetition", $MappedData[$i]['meetings']) ? $MappedData[$i]['meetings']['repetition'] : "");
+                    $M_Model->setKind(array_key_exists("kind", $MappedData[$i]['meetings']) ? $MappedData[$i]['meetings']['kind'] : "");
+                    $M_Model->setType(array_key_exists("type", $MappedData[$i]['meetings']) ? $MappedData[$i]['meetings']['type'] : "");
+                    $M_Model->setAccess(array_key_exists("access", $MappedData[$i]['meetings']) ? $MappedData[$i]['meetings']['access'] : "");
+                    $M_Model->setStatus(array_key_exists("status", $MappedData[$i]['meetings']) ? $MappedData[$i]['meetings']['status'] : "");
+                    $M_Model->setImageUrl(array_key_exists("imageUrl", $MappedData[$i]['meetings']) ? $MappedData[$i]['meetings']['imageUrl'] : "");
+                    $M_Model->setImageCopyright(array_key_exists("imageCopyright", $MappedData[$i]['meetings']) ? $MappedData[$i]['meetings']['imageCopyright'] : "");
+                    $M_Model->setLocation(array_key_exists("location", $MappedData[$i]['meetings']) ? $MappedData[$i]['meetings']['location'] : "");
+                    $M_Model->setCity(array_key_exists("city", $MappedData[$i]['meetings']) ? $MappedData[$i]['meetings']['city'] : "");
+                    $M_Model->setCountry(array_key_exists("country", $MappedData[$i]['meetings']) ? $MappedData[$i]['meetings']['country'] : "");
+                    $M_Model->setLatitude(array_key_exists("latitude", $MappedData[$i]['meetings']) ? $MappedData[$i]['meetings']['latitude'] : "");
+                    $M_Model->setLongitude(array_key_exists("longitude", $MappedData[$i]['meetings']) ? $MappedData[$i]['meetings']['longitude'] : "");
+                    $M_Model->setAuthor(array_key_exists("author", $MappedData[$i]['meetings']) ? $MappedData[$i]['meetings']['author'] : "");
+                    $M_Model->setUpdated(array_key_exists("updated", $MappedData[$i]['meetings']) ? $MappedData[$i]['meetings']['updated'] : "");
 
-                $MD_Model = new MeetingsDescription();
-
-                $MD_Model->setId(array_key_exists("id", $MappedData[$i]['meetings_description']) ? $MappedData[$i]['meetings_description']['id'] : "");
-                $MD_Model->setMeetingId(array_key_exists("meeting_id", $MappedData[$i]['meetings_description']) ? $MappedData[$i]['meetings_description']['meeting_id'] : "");
-                $MD_Model->setLanguage(array_key_exists("language", $MappedData[$i]['meetings_description']) ? $MappedData[$i]['meetings_description']['language'] : "");
-                $MD_Model->setDescription(array_key_exists("description", $MappedData[$i]['meetings_description']) ? $MappedData[$i]['meetings_description']['description'] : "");
-
-                $MD_Model->save();
+                    $M_Model->save();
 
 
-                $MT_Model = new MeetingTitle();
+                    $MD_Model = new MeetingsDescription();
 
-                $MT_Model->setId(array_key_exists("id", $MappedData[$i]['meeting_title']) ? $MappedData[$i]['meeting_title']['id'] : "");
-                $MT_Model->setMeetingId(array_key_exists("meeting_title", $MappedData[$i]['meeting_title']) ? $MappedData[$i]['meeting_title']['meeting_id'] : "");
-                $MT_Model->setLanguage(array_key_exists("language", $MappedData[$i]['meeting_title']) ? $MappedData[$i]['meeting_title']['language'] : "");
-                $MT_Model->setTitle(array_key_exists("title", $MappedData[$i]['meeting_title']) ? $MappedData[$i]['meeting_title']['title'] : "");
+                    $MD_Model->setId(array_key_exists("id", $MappedData[$i]['meetings_description']) ? $MappedData[$i]['meetings_description']['id'] : "");
+                    $MD_Model->setMeetingId(array_key_exists("meeting_id", $MappedData[$i]['meetings_description']) ? $MappedData[$i]['meetings_description']['meeting_id'] : "");
+                    $MD_Model->setLanguage(array_key_exists("language", $MappedData[$i]['meetings_description']) ? $MappedData[$i]['meetings_description']['language'] : "");
+                    $MD_Model->setDescription(array_key_exists("description", $MappedData[$i]['meetings_description']) ? $MappedData[$i]['meetings_description']['description'] : "");
 
-                $MT_Model->save();
+                    $MD_Model->save();
+
+
+                    $MT_Model = new MeetingTitle();
+
+                    $MT_Model->setId(array_key_exists("id", $MappedData[$i]['meeting_title']) ? $MappedData[$i]['meeting_title']['id'] : "");
+                    $MT_Model->setMeetingId(array_key_exists("meeting_title", $MappedData[$i]['meeting_title']) ? $MappedData[$i]['meeting_title']['meeting_id'] : "");
+                    $MT_Model->setLanguage(array_key_exists("language", $MappedData[$i]['meeting_title']) ? $MappedData[$i]['meeting_title']['language'] : "");
+                    $MT_Model->setTitle(array_key_exists("title", $MappedData[$i]['meeting_title']) ? $MappedData[$i]['meeting_title']['title'] : "");
+
+                    $MT_Model->save();
+
+                }
+
+                echo "\n\n MEETING DOCUMENTS COLLECTION DATA UPDATED! \n\n";
+
+            } //Saving to contacts table
+            else if ($coll_name === "Contacts") {
+                $Model = new Contacts();
+                $records = $Model::find();
+                $records->delete();
+
+                $Model2 = new ContactTreaty();
+                $records2 = $Model2::find();
+                $records2->delete();
+
+                for ($i = 0, $iMax = count($MappedData); $i < $iMax; $i++) {
+
+                    $C_Model = new Contacts();
+
+                    $C_Model->setId(array_key_exists("id", $MappedData[$i]['contacts']) ? $MappedData[$i]['contacts']['id'] : "");
+                    $C_Model->setCountry(array_key_exists("country", $MappedData[$i]['contacts']) ? $MappedData[$i]['contacts']['country'] : "");
+                    $C_Model->setPrefix(array_key_exists("prefix", $MappedData[$i]['contacts']) ? $MappedData[$i]['contacts']['prefix'] : "");
+                    $C_Model->setFirstName(array_key_exists("firstName", $MappedData[$i]['contacts']) ? $MappedData[$i]['contacts']['firstName'] : "");
+                    $C_Model->setLastName(array_key_exists("lastName", $MappedData[$i]['contacts']) ? $MappedData[$i]['contacts']['lastName'] : "");
+                    $C_Model->setPosition(array_key_exists("position", $MappedData[$i]['contacts']) ? $MappedData[$i]['contacts']['position'] : "");
+                    $C_Model->setInstitution(array_key_exists("institution", $MappedData[$i]['contacts']) ? $MappedData[$i]['contacts']['institution'] : "");
+                    $C_Model->setDepartment(array_key_exists("department", $MappedData[$i]['contacts']) ? $MappedData[$i]['contacts']['department'] : "");
+                    $C_Model->setType(array_key_exists("type", $MappedData[$i]['contacts']) ? $MappedData[$i]['contacts']['type'] : "");
+                    $C_Model->setAddress(array_key_exists("address", $MappedData[$i]['contacts']) ? $MappedData[$i]['contacts']['address'] : "");
+                    $C_Model->setEmail(array_key_exists("email", $MappedData[$i]['contacts']) ? $MappedData[$i]['contacts']['email'] : "");
+                    $C_Model->setPhoneNumber(array_key_exists("phoneNumber", $MappedData[$i]['contacts']) ? $MappedData[$i]['contacts']['phoneNumber'] : "");
+                    $C_Model->setFax(array_key_exists("fax", $MappedData[$i]['contacts']) ? $MappedData[$i]['contacts']['fax'] : "");
+                    $C_Model->setPrimary(array_key_exists("primary", $MappedData[$i]['contacts']) ? $MappedData[$i]['contacts']['primary'] : "");
+                    $C_Model->setAuthor(array_key_exists("author", $MappedData[$i]['contacts']) ? $MappedData[$i]['contacts']['author'] : "");
+                    $C_Model->setUpdated(array_key_exists("updated", $MappedData[$i]['contacts']) ? $MappedData[$i]['contacts']['updated'] : "");
+
+                    $C_Model->save();
+
+
+                    $CT_Model = new ContactTreaty();
+
+                    $CT_Model->setId(array_key_exists("id", $MappedData[$i]['contact_treaty']) ? $MappedData[$i]['contact_treaty']['id'] : "");
+                    $CT_Model->setContactId(array_key_exists("contact_id", $MappedData[$i]['contact_treaty']) ? $MappedData[$i]['contact_treaty']['contact_id'] : "");
+                    $CT_Model->setTreaty(array_key_exists("treaty", $MappedData[$i]['contact_treaty']) ? $MappedData[$i]['contact_treaty']['treaty'] : "");
+
+                    $CT_Model->save();
+
+                }
+
+                echo "\n\n CONTACTS COLLECTION DATA UPDATED! \n\n";
+
+
+            } else if ($coll_name === "Decisions") {
+                $Model = new Decisions();
+                $records = $Model::find();
+                $records->delete();
+
+                $Model2 = new DecisionsContent();
+                $records2 = $Model2::find();
+                $records2->delete();
+
+                $Model3 = new DecisionsDocuments();
+                $records3 = $Model3::find();
+                $records3->delete();
+
+                $Model4 = new DecisionsKeywords();
+                $records4 = $Model4::find();
+                $records4->delete();
+
+                $Model5 = new DecisionsLongtitle();
+                $records5 = $Model5::find();
+                $records5->delete();
+
+                $Model6 = new DecisionsSummary();
+                $records6 = $Model6::find();
+                $records6->delete();
+
+                $Model7 = new DecisionsTitle();
+                $records7 = $Model7::find();
+                $records7->delete();
+
+
+                for ($i = 0, $iMax = count($MappedData); $i < $iMax; $i++) {
+                    $D_Model = new Decisions();
+
+                    $D_Model->setId(array_key_exists("id", $MappedData[$i]['decisions']) ? $MappedData[$i]['decisions']['id'] : "");
+                    $D_Model->setLink(array_key_exists("link", $MappedData[$i]['decisions']) ? $MappedData[$i]['decisions']['link'] : "");
+                    $D_Model->setType(array_key_exists("type", $MappedData[$i]['decisions']) ? $MappedData[$i]['decisions']['type'] : "");
+                    $D_Model->setStatus(array_key_exists("status", $MappedData[$i]['decisions']) ? $MappedData[$i]['decisions']['status'] : "");
+                    $D_Model->setNumber(array_key_exists("number", $MappedData[$i]['decisions']) ? $MappedData[$i]['decisions']['number'] : "");
+                    $D_Model->setTreaty(array_key_exists("treaty", $MappedData[$i]['decisions']) ? $MappedData[$i]['decisions']['treaty'] : "");
+                    $D_Model->setPublished(array_key_exists("published", $MappedData[$i]['decisions']) ? $MappedData[$i]['decisions']['published'] : "");
+                    $D_Model->setMeetingId(array_key_exists("meetingId", $MappedData[$i]['decisions']) ? $MappedData[$i]['decisions']['meetingId'] : "");
+                    $D_Model->setMeetingTitle(array_key_exists("meetingTitle", $MappedData[$i]['decisions']) ? $MappedData[$i]['decisions']['meetingTitle'] : "");
+                    $D_Model->setMeetingUrl(array_key_exists("meetingUrl", $MappedData[$i]['decisions']) ? $MappedData[$i]['decisions']['meetingUrl'] : "");
+                    $D_Model->setDisplayOrder(array_key_exists("displayOrder", $MappedData[$i]['decisions']) ? $MappedData[$i]['decisions']['displayOrder'] : "");
+                    $D_Model->setAuthor(array_key_exists("author", $MappedData[$i]['decisions']) ? $MappedData[$i]['decisions']['author'] : "");
+                    $D_Model->setUpdated(array_key_exists("updated", $MappedData[$i]['decisions']) ? $MappedData[$i]['decisions']['updated'] : "");
+
+                    $D_Model->save();
+
+
+                    $DC_Model = new DecisionsContent();
+
+                    $DC_Model->setId(array_key_exists("id", $MappedData[$i]['decisions_content']) ? $MappedData[$i]['decisions_content']['id'] : "");
+                    $DC_Model->setDecisionId(array_key_exists("decision_id", $MappedData[$i]['decisions_content']) ? $MappedData[$i]['decisions_content']['decision_id'] : "");
+                    $DC_Model->setLanguage(array_key_exists("language", $MappedData[$i]['decisions_content']) ? $MappedData[$i]['decisions_content']['language'] : "");
+                    $DC_Model->setContent(array_key_exists("content", $MappedData[$i]['decisions_content']) ? $MappedData[$i]['decisions_content']['content'] : "");
+
+                    $DC_Model->save();
+
+
+                    $DD_Model = new DecisionsDocuments();
+
+                    $DD_Model->setId(array_key_exists("id", $MappedData[$i]['decisions_documents']) ? $MappedData[$i]['decisions_documents']['id'] : "");
+                    $DD_Model->setDecisionId(array_key_exists("decision_id", $MappedData[$i]['decisions_documents']) ? $MappedData[$i]['decisions_documents']['decision_id'] : "");
+                    $DD_Model->setDiskPath(array_key_exists("diskPath", $MappedData[$i]['decisions_documents']) ? $MappedData[$i]['decisions_documents']['diskPath'] : "");
+                    $DD_Model->setUrl(array_key_exists("url", $MappedData[$i]['decisions_documents']) ? $MappedData[$i]['decisions_documents']['url'] : "");
+                    $DD_Model->setMimeType(array_key_exists("mimeType", $MappedData[$i]['decisions_documents']) ? $MappedData[$i]['decisions_documents']['mimeType'] : "");
+                    $DD_Model->setLanguage(array_key_exists("language", $MappedData[$i]['decisions_documents']) ? $MappedData[$i]['decisions_documents']['language'] : "");
+                    $DD_Model->setFilename(array_key_exists("language", $MappedData[$i]['decisions_documents']) ? $MappedData[$i]['decisions_documents']['filename'] : "");
+
+                    $DD_Model->save();
+
+
+                    $DK_Model = new DecisionsKeywords();
+
+                    $DK_Model->setId(array_key_exists("id", $MappedData[$i]['decisions_keywords']) ? $MappedData[$i]['decisions_keywords']['id'] : "");
+                    $DK_Model->setDecisionId(array_key_exists("decision_id", $MappedData[$i]['decisions_keywords']) ? $MappedData[$i]['decisions_keywords']['decision_id'] : "");
+                    $DK_Model->setNamespace(array_key_exists("namespace", $MappedData[$i]['decisions_keywords']) ? $MappedData[$i]['decisions_keywords']['namespace'] : "");
+                    $DK_Model->setTerm(array_key_exists("term", $MappedData[$i]['decisions_keywords']) ? $MappedData[$i]['decisions_keywords']['term'] : "");
+
+                    $DK_Model->save();
+
+
+                    $DL_Model = new DecisionsLongtitle();
+
+                    $DL_Model->setId(array_key_exists("id", $MappedData[$i]['decisions_longtitle']) ? $MappedData[$i]['decisions_longtitle']['id'] : "");
+                    $DL_Model->setDecisionId(array_key_exists("decision_id", $MappedData[$i]['decisions_longtitle']) ? $MappedData[$i]['decisions_longtitle']['decision_id'] : "");
+                    $DL_Model->setLanguage(array_key_exists("language", $MappedData[$i]['decisions_longtitle']) ? $MappedData[$i]['decisions_longtitle']['language'] : "");
+                    $DL_Model->setLongTitle(array_key_exists("long_title", $MappedData[$i]['decisions_longtitle']) ? $MappedData[$i]['decisions_longtitle']['long_title'] : "");
+
+                    $DL_Model->save();
+
+
+                    $DS_Model = new DecisionsSummary();
+
+                    $DS_Model->setId(array_key_exists("id", $MappedData[$i]['decisions_summary']) ? $MappedData[$i]['decisions_summary']['id'] : "");
+                    $DS_Model->setDecisionId(array_key_exists("decision_id", $MappedData[$i]['decisions_summary']) ? $MappedData[$i]['decisions_summary']['decision_id'] : "");
+                    $DS_Model->setLanguage(array_key_exists("language", $MappedData[$i]['decisions_summary']) ? $MappedData[$i]['decisions_summary']['language'] : "");
+                    $DS_Model->setSummary(array_key_exists("summary", $MappedData[$i]['decisions_summary']) ? $MappedData[$i]['decisions_summary']['summary'] : "");
+
+                    $DS_Model->save();
+
+
+                    $DT_Model = new DecisionsTitle();
+
+                    $DT_Model->setId(array_key_exists("id", $MappedData[$i]['decisions_title']) ? $MappedData[$i]['decisions_title']['id'] : "");
+                    $DT_Model->setDecisionId(array_key_exists("decision_id", $MappedData[$i]['decisions_title']) ? $MappedData[$i]['decisions_title']['decision_id'] : "");
+                    $DT_Model->setLanguage(array_key_exists("language", $MappedData[$i]['decisions_title']) ? $MappedData[$i]['decisions_title']['language'] : "");
+                    $DT_Model->setTitle(array_key_exists("title", $MappedData[$i]['decisions_title']) ? $MappedData[$i]['decisions_title']['title'] : "");
+
+                    $DT_Model->save();
+
+                }
+
+                echo "\n\n DECISIONS COLLECTION DATA UPDATED! \n\n";
+
+            } else if ($coll_name === "Country Reports") {
+
+                $Model = new CountryReports();
+                $records = $Model::find();
+                $records->delete();
+
+                $Model2 = new CountryReportsDocuments();
+                $records2 = $Model2::find();
+                $records2->delete();
+
+
+                for ($i = 0, $iMax = count($MappedData); $i < $iMax; $i++) {
+
+                    $CR_Model = new CountryReports();
+
+                    $CR_Model->setId(array_key_exists("id", $MappedData[$i]['country_reports']) ? $MappedData[$i]['country_reports']['id'] : "");
+                    $CR_Model->setTreaty(array_key_exists("treaty", $MappedData[$i]['country_reports']) ? $MappedData[$i]['country_reports']['treaty'] : "");
+                    $CR_Model->setCountry(array_key_exists("country", $MappedData[$i]['country_reports']) ? $MappedData[$i]['country_reports']['country'] : "");
+                    $CR_Model->setSubmission(array_key_exists("submission", $MappedData[$i]['country_reports']) ? $MappedData[$i]['country_reports']['submission'] : "");
+                    $CR_Model->setUrl(array_key_exists("url", $MappedData[$i]['country_reports']) ? $MappedData[$i]['country_reports']['url'] : "");
+                    $CR_Model->setAuthor(array_key_exists("author", $MappedData[$i]['country_reports']) ? $MappedData[$i]['country_reports']['author'] : "");
+                    $CR_Model->setUpdated(array_key_exists("updated", $MappedData[$i]['country_reports']) ? $MappedData[$i]['country_reports']['updated'] : "");
+
+                    $CR_Model->save();
+
+
+                    $CRD_Model = new CountryReportsDocuments();
+
+                    $CRD_Model->setId(array_key_exists("id", $MappedData[$i]['country_reports_documents']) ? $MappedData[$i]['country_reports_documents']['id'] : "");
+                    $CRD_Model->setCountryReportId(array_key_exists("country_report_id", $MappedData[$i]['country_reports_documents']) ? $MappedData[$i]['country_reports_documents']['country_report_id'] : "");
+                    $CRD_Model->setDiskPath(array_key_exists("diskPath", $MappedData[$i]['country_reports_documents']) ? $MappedData[$i]['country_reports_documents']['diskPath'] : "");
+                    $CRD_Model->setUrl(array_key_exists("url", $MappedData[$i]['country_reports_documents']) ? $MappedData[$i]['country_reports_documents']['url'] : "");
+                    $CRD_Model->setMimeType(array_key_exists("mimeType", $MappedData[$i]['country_reports_documents']) ? $MappedData[$i]['country_reports_documents']['mimeType'] : "");
+                    $CRD_Model->setLanguage(array_key_exists("language", $MappedData[$i]['country_reports_documents']) ? $MappedData[$i]['country_reports_documents']['language'] : "");
+                    $CRD_Model->setFileName(array_key_exists("filename", $MappedData[$i]['country_reports_documents']) ? $MappedData[$i]['country_reports_documents']['filename'] : "");
+
+                    $CRD_Model->save();
+
+
+                    $CRT_Model = new CountryReportsTitle();
+
+                    $CRT_Model->setId(array_key_exists("id", $MappedData[$i]['country_reports_title']) ? $MappedData[$i]['country_reports_title']['id'] : "");
+                    $CRT_Model->setCountryReportId(array_key_exists("country_report_id", $MappedData[$i]['country_reports_title']) ? $MappedData[$i]['country_reports_title']['country_report_id'] : "");
+                    $CRT_Model->setLanguage(array_key_exists("language", $MappedData[$i]['country_reports_title']) ? $MappedData[$i]['country_reports_title']['language'] : "");
+                    $CRT_Model->setTitle(array_key_exists("title", $MappedData[$i]['country_reports_title']) ? $MappedData[$i]['country_reports_title']['title'] : "");
+
+                    $CRT_Model->save();
+
+                }
+
+                echo "\n\n COUNTRY REPORTS COLLECTION DATA UPDATED! \n\n";
+
+            } else if ($coll_name === "General Documents") {
+                $Model = new GeneralDocuments();
+                $records = $Model::find();
+                $records->delete();
+
+
+                for ($i = 0, $iMax = count($MappedData); $i < $iMax; $i++) {
+
+                    $GD_Model = new GeneralDocuments();
+
+                    $GD_Model->setId(array_key_exists("id", $MappedData[$i]['general_documents']) ? $MappedData[$i]['general_documents']['id'] : "");
+                    $GD_Model->setTitle(array_key_exists("title", $MappedData[$i]['general_documents']) ? $MappedData[$i]['general_documents']['title'] : "");
+                    $GD_Model->setAuthor(array_key_exists("author", $MappedData[$i]['general_documents']) ? $MappedData[$i]['general_documents']['author'] : "");
+                    $GD_Model->setPublisher(array_key_exists("publisher", $MappedData[$i]['general_documents']) ? $MappedData[$i]['general_documents']['publisher'] : "");
+                    $GD_Model->setUrl(array_key_exists("url", $MappedData[$i]['general_documents']) ? $MappedData[$i]['general_documents']['url'] : "");
+                    $GD_Model->setDateIssued(array_key_exists("date_issued", $MappedData[$i]['general_documents']) ? $MappedData[$i]['general_documents']['date_issued'] : "");
+                    $GD_Model->setDateAvailable(array_key_exists("date_available", $MappedData[$i]['general_documents']) ? $MappedData[$i]['general_documents']['date_available'] : "");
+                    $GD_Model->setDateAccessioned(array_key_exists("available", $MappedData[$i]['general_documents']) ? $MappedData[$i]['general_documents']['available'] : "");
+                    $GD_Model->setLanguageIso(array_key_exists("language_iso", $MappedData[$i]['general_documents']) ? $MappedData[$i]['general_documents']['language_iso'] : "");
+                    $GD_Model->setUpdated(array_key_exists("updated", $MappedData[$i]['general_documents']) ? $MappedData[$i]['general_documents']['updated'] : "");
+
+                    $GD_Model->save();
+
+                }
+
+                echo "\n\n GENERAL DOCUMENTS COLLECTION DATA UPDATED! \n\n";
+
+
+            } else if ($coll_name === "Library Catalog") {
+                $Model = new LibraryCatalog();
+                $records = $Model::find();
+                $records->delete();
+
+                for ($i = 0, $iMax = count($MappedData); $i < $iMax; $i++) {
+
+                    $LC_Model = new LibraryCatalog();
+
+                    $LC_Model->setId(array_key_exists("id", $MappedData[$i]['library_catalog']) ? $MappedData[$i]['library_catalog']['id'] : "");
+                    $LC_Model->setTitle(array_key_exists("title", $MappedData[$i]['library_catalog']) ? $MappedData[$i]['library_catalog']['title'] : "");
+                    $LC_Model->setAuthor(array_key_exists("author", $MappedData[$i]['library_catalog']) ? $MappedData[$i]['library_catalog']['author'] : "");
+                    $LC_Model->setPublisher(array_key_exists("publisher", $MappedData[$i]['library_catalog']) ? $MappedData[$i]['library_catalog']['publisher'] : "");
+                    $LC_Model->setContributor(array_key_exists("contributor", $MappedData[$i]['library_catalog']) ? $MappedData[$i]['library_catalog']['contributor'] : "");
+                    $LC_Model->setDateIssued(array_key_exists("date_issued", $MappedData[$i]['library_catalog']) ? $MappedData[$i]['library_catalog']['date_issued'] : "");
+                    $LC_Model->setDateAccessioned(array_key_exists("date_accessioned", $MappedData[$i]['library_catalog']) ? $MappedData[$i]['library_catalog']['date_accessioned'] : "");
+                    $LC_Model->setDateAvailable(array_key_exists("date_available", $MappedData[$i]['library_catalog']) ? $MappedData[$i]['library_catalog']['date_available'] : "");
+                    $LC_Model->setDate(array_key_exists("date", $MappedData[$i]['library_catalog']) ? $MappedData[$i]['library_catalog']['date'] : "");
+                    $LC_Model->setVersion(array_key_exists("version", $MappedData[$i]['library_catalog']) ? $MappedData[$i]['library_catalog']['version'] : "");
+                    $LC_Model->setLanguage(array_key_exists("language", $MappedData[$i]['library_catalog']) ? $MappedData[$i]['library_catalog']['language'] : "");
+                    $LC_Model->setCategory(array_key_exists("category", $MappedData[$i]['library_catalog']) ? $MappedData[$i]['library_catalog']['category'] : "");
+                    $LC_Model->setClass(array_key_exists("class", $MappedData[$i]['library_catalog']) ? $MappedData[$i]['library_catalog']['class'] : "");
+                    $LC_Model->setWebsite(array_key_exists("website", $MappedData[$i]['library_catalog']) ? $MappedData[$i]['library_catalog']['website'] : "");
+                    $LC_Model->setUri(array_key_exists("uri", $MappedData[$i]['library_catalog']) ? $MappedData[$i]['library_catalog']['uri'] : "");
+                    $LC_Model->setPlace(array_key_exists("place", $MappedData[$i]['library_catalog']) ? $MappedData[$i]['library_catalog']['place'] : "");
+                    $LC_Model->setNotes(array_key_exists("notes", $MappedData[$i]['library_catalog']) ? $MappedData[$i]['library_catalog']['notes'] : "");
+                    $LC_Model->setInmagic(array_key_exists("inmagic", $MappedData[$i]['library_catalog']) ? $MappedData[$i]['library_catalog']['inmagic'] : "");
+                    $LC_Model->setUpdated(array_key_exists("updated", $MappedData[$i]['library_catalog']) ? $MappedData[$i]['library_catalog']['updated'] : "");
+
+                    $LC_Model->save();
+
+
+                }
+
+                echo "\n\n LIBRARY CATALOG COLLECTION DATA UPDATED! \n\n";
+
+
+            } else if ($coll_name === "Publications") {
+                $Model = new Publications();
+                $records = $Model::find();
+                $records->delete();
+
+                for ($i = 0, $iMax = count($MappedData); $i < $iMax; $i++) {
+
+                    $Pub_Model = new Publications();
+
+                    $Pub_Model->setId(array_key_exists("id", $MappedData[$i]['publications']) ? $MappedData[$i]['publications']['id'] : "");
+                    $Pub_Model->setTitle(array_key_exists("title", $MappedData[$i]['publications']) ? $MappedData[$i]['publications']['title'] : "");
+                    $Pub_Model->setTitleEs(array_key_exists("title_es", $MappedData[$i]['publications']) ? $MappedData[$i]['publications']['title_es'] : "");
+                    $Pub_Model->setTitleFr(array_key_exists("title_fr", $MappedData[$i]['publications']) ? $MappedData[$i]['publications']['title_fr'] : "");
+                    $Pub_Model->setAuthor(array_key_exists("author", $MappedData[$i]['publications']) ? $MappedData[$i]['publications']['author'] : "");
+                    $Pub_Model->setPublisher(array_key_exists("publisher", $MappedData[$i]['publications']) ? $MappedData[$i]['publications']['publisher'] : "");
+                    $Pub_Model->setContributor(array_key_exists("contributor", $MappedData[$i]['publications']) ? $MappedData[$i]['publications']['contributor'] : "");
+                    $Pub_Model->setVersion(array_key_exists("version", $MappedData[$i]['publications']) ? $MappedData[$i]['publications']['version'] : "");
+                    $Pub_Model->setLanguage(array_key_exists("language", $MappedData[$i]['publications']) ? $MappedData[$i]['publications']['language'] : "");
+                    $Pub_Model->setDescriptors(array_key_exists("descriptors", $MappedData[$i]['publications']) ? $MappedData[$i]['publications']['descriptors'] : "");
+                    $Pub_Model->setCategory(array_key_exists("category", $MappedData[$i]['publications']) ? $MappedData[$i]['publications']['category'] : "");
+                    $Pub_Model->setClass(array_key_exists("class", $MappedData[$i]['publications']) ? $MappedData[$i]['publications']['class'] : "");
+                    $Pub_Model->setIsPartOfSeries(array_key_exists("is_part_of_series", $MappedData[$i]['publications']) ? $MappedData[$i]['publications']['is_part_of_series'] : "");
+                    $Pub_Model->setSeries(array_key_exists("series", $MappedData[$i]['publications']) ? $MappedData[$i]['publications']['series'] : "");
+                    $Pub_Model->setType(array_key_exists("type", $MappedData[$i]['publications']) ? $MappedData[$i]['publications']['type'] : "");
+                    $Pub_Model->setIsbn(array_key_exists("isbn", $MappedData[$i]['publications']) ? $MappedData[$i]['publications']['isbn'] : "");
+                    $Pub_Model->setRights(array_key_exists("rights", $MappedData[$i]['publications']) ? $MappedData[$i]['publications']['rights'] : "");
+                    $Pub_Model->setPlace(array_key_exists("place", $MappedData[$i]['publications']) ? $MappedData[$i]['publications']['place'] : "");
+                    $Pub_Model->setWebsite(array_key_exists("website", $MappedData[$i]['publications']) ? $MappedData[$i]['publications']['website'] : "");
+                    $Pub_Model->setUri(array_key_exists("uri", $MappedData[$i]['publications']) ? $MappedData[$i]['publications']['uri'] : "");
+                    $Pub_Model->setDate(array_key_exists("date", $MappedData[$i]['publications']) ? $MappedData[$i]['publications']['date'] : "");
+                    $Pub_Model->setDateIssued(array_key_exists("date_issued", $MappedData[$i]['publications']) ? $MappedData[$i]['publications']['date_issued'] : "");
+                    $Pub_Model->setDateAvailable(array_key_exists("date_available", $MappedData[$i]['publications']) ? $MappedData[$i]['publications']['date_available'] : "");
+                    $Pub_Model->setDateAccessioned(array_key_exists("date_accessioned", $MappedData[$i]['publications']) ? $MappedData[$i]['publications']['date_accessioned'] : "");
+                    $Pub_Model->setUpdated(array_key_exists("updated", $MappedData[$i]['publications']) ? $MappedData[$i]['publications']['updated'] : "");
+
+                    $Pub_Model->save();
+
+                }
+
+                echo "\n\n PUBLICATIONS COLLECTION DATA UPDATED! \n\n";
+
 
             }
-
-            echo "\n\n MEETING DOCUMENTS COLLECTION DATA UPDATED! \n\n";
-
-        }
-
-
-        //Saving to contacts table
-        else if($coll_name === "Contacts"){
-            $Model = new Contacts();
-            $records = $Model::find();
-            $records->delete();
-
-            $Model2 = new ContactTreaty();
-            $records2 = $Model2::find();
-            $records2->delete();
-
-            for ($i = 0, $iMax = count($MappedData); $i < $iMax; $i++) {
-
-                $C_Model = new Contacts();
-
-                $C_Model->setId(array_key_exists("id", $MappedData[$i]['contacts']) ? $MappedData[$i]['contacts']['id'] : "");
-                $C_Model->setCountry(array_key_exists("country", $MappedData[$i]['contacts']) ? $MappedData[$i]['contacts']['country'] : "");
-                $C_Model->setPrefix(array_key_exists("prefix", $MappedData[$i]['contacts']) ? $MappedData[$i]['contacts']['prefix'] : "");
-                $C_Model->setFirstName(array_key_exists("firstName", $MappedData[$i]['contacts']) ? $MappedData[$i]['contacts']['firstName'] : "");
-                $C_Model->setLastName(array_key_exists("lastName", $MappedData[$i]['contacts']) ? $MappedData[$i]['contacts']['lastName'] : "");
-                $C_Model->setPosition(array_key_exists("position", $MappedData[$i]['contacts']) ? $MappedData[$i]['contacts']['position'] : "");
-                $C_Model->setInstitution(array_key_exists("institution", $MappedData[$i]['contacts']) ? $MappedData[$i]['contacts']['institution'] : "");
-                $C_Model->setDepartment(array_key_exists("department", $MappedData[$i]['contacts']) ? $MappedData[$i]['contacts']['department'] : "");
-                $C_Model->setType(array_key_exists("type", $MappedData[$i]['contacts']) ? $MappedData[$i]['contacts']['type'] : "");
-                $C_Model->setAddress(array_key_exists("address", $MappedData[$i]['contacts']) ? $MappedData[$i]['contacts']['address'] : "");
-                $C_Model->setEmail(array_key_exists("email", $MappedData[$i]['contacts']) ? $MappedData[$i]['contacts']['email'] : "");
-                $C_Model->setPhoneNumber(array_key_exists("phoneNumber", $MappedData[$i]['contacts']) ? $MappedData[$i]['contacts']['phoneNumber'] : "");
-                $C_Model->setFax(array_key_exists("fax", $MappedData[$i]['contacts']) ? $MappedData[$i]['contacts']['fax'] : "");
-                $C_Model->setPrimary(array_key_exists("primary", $MappedData[$i]['contacts']) ? $MappedData[$i]['contacts']['primary'] : "");
-                $C_Model->setAuthor(array_key_exists("author", $MappedData[$i]['contacts']) ? $MappedData[$i]['contacts']['author'] : "");
-                $C_Model->setUpdated(array_key_exists("updated", $MappedData[$i]['contacts']) ? $MappedData[$i]['contacts']['updated'] : "");
-
-                $C_Model->save();
-
-
-                $CT_Model = new ContactTreaty();
-
-                $CT_Model->setId(array_key_exists("id", $MappedData[$i]['contact_treaty']) ? $MappedData[$i]['contact_treaty']['id'] : "");
-                $CT_Model->setContactId(array_key_exists("contact_id", $MappedData[$i]['contact_treaty']) ? $MappedData[$i]['contact_treaty']['contact_id'] : "");
-                $CT_Model->setTreaty(array_key_exists("treaty", $MappedData[$i]['contact_treaty']) ? $MappedData[$i]['contact_treaty']['treaty'] : "");
-
-                $CT_Model->save();
-
-            }
-
-            echo "\n\n CONTACTS COLLECTION DATA UPDATED! \n\n";
-
-
-        }
-
-        else if($coll_name === "Decisions") {
-            $Model = new Decisions();
-            $records = $Model::find();
-            $records->delete();
-
-            $Model2 = new DecisionsContent();
-            $records2 = $Model2::find();
-            $records2->delete();
-
-            $Model3 = new DecisionsDocuments();
-            $records3 = $Model3::find();
-            $records3->delete();
-
-            $Model4 = new DecisionsKeywords();
-            $records4 = $Model4::find();
-            $records4->delete();
-
-            $Model5 = new DecisionsLongtitle();
-            $records5 = $Model5::find();
-            $records5->delete();
-
-            $Model6 = new DecisionsSummary();
-            $records6 = $Model6::find();
-            $records6->delete();
-
-            $Model7 = new DecisionsTitle();
-            $records7 = $Model7::find();
-            $records7->delete();
-
-
-
-            for ($i = 0, $iMax = count($MappedData); $i < $iMax; $i++) {
-                $D_Model = new Decisions();
-
-                $D_Model->setId(array_key_exists("id", $MappedData[$i]['decisions']) ? $MappedData[$i]['decisions']['id'] : "");
-                $D_Model->setLink(array_key_exists("link", $MappedData[$i]['decisions']) ? $MappedData[$i]['decisions']['link'] : "");
-                $D_Model->setType(array_key_exists("type", $MappedData[$i]['decisions']) ? $MappedData[$i]['decisions']['type'] : "");
-                $D_Model->setStatus(array_key_exists("status", $MappedData[$i]['decisions']) ? $MappedData[$i]['decisions']['status'] : "");
-                $D_Model->setNumber(array_key_exists("number", $MappedData[$i]['decisions']) ? $MappedData[$i]['decisions']['number'] : "");
-                $D_Model->setTreaty(array_key_exists("treaty", $MappedData[$i]['decisions']) ? $MappedData[$i]['decisions']['treaty'] : "");
-                $D_Model->setPublished(array_key_exists("published", $MappedData[$i]['decisions']) ? $MappedData[$i]['decisions']['published'] : "");
-                $D_Model->setMeetingId(array_key_exists("meetingId", $MappedData[$i]['decisions']) ? $MappedData[$i]['decisions']['meetingId'] : "");
-                $D_Model->setMeetingTitle(array_key_exists("meetingTitle", $MappedData[$i]['decisions']) ? $MappedData[$i]['decisions']['meetingTitle'] : "");
-                $D_Model->setMeetingUrl(array_key_exists("meetingUrl", $MappedData[$i]['decisions']) ? $MappedData[$i]['decisions']['meetingUrl'] : "");
-                $D_Model->setDisplayOrder(array_key_exists("displayOrder", $MappedData[$i]['decisions']) ? $MappedData[$i]['decisions']['displayOrder'] : "");
-                $D_Model->setAuthor(array_key_exists("author", $MappedData[$i]['decisions']) ? $MappedData[$i]['decisions']['author'] : "");
-                $D_Model->setUpdated(array_key_exists("updated", $MappedData[$i]['decisions']) ? $MappedData[$i]['decisions']['updated'] : "");
-
-                $D_Model->save();
-
-
-                $DC_Model = new DecisionsContent();
-
-                $DC_Model->setId(array_key_exists("id", $MappedData[$i]['decisions_content']) ? $MappedData[$i]['decisions_content']['id'] : "");
-                $DC_Model->setDecisionId(array_key_exists("decision_id", $MappedData[$i]['decisions_content']) ? $MappedData[$i]['decisions_content']['decision_id'] : "");
-                $DC_Model->setLanguage(array_key_exists("language", $MappedData[$i]['decisions_content']) ? $MappedData[$i]['decisions_content']['language'] : "");
-                $DC_Model->setContent(array_key_exists("content", $MappedData[$i]['decisions_content']) ? $MappedData[$i]['decisions_content']['content'] : "");
-
-                $DC_Model->save();
-
-
-                $DD_Model = new DecisionsDocuments();
-
-                $DD_Model->setId(array_key_exists("id", $MappedData[$i]['decisions_documents']) ? $MappedData[$i]['decisions_documents']['id'] : "");
-                $DD_Model->setDecisionId(array_key_exists("decision_id", $MappedData[$i]['decisions_documents']) ? $MappedData[$i]['decisions_documents']['decision_id'] : "");
-                $DD_Model->setDiskPath(array_key_exists("diskPath", $MappedData[$i]['decisions_documents']) ? $MappedData[$i]['decisions_documents']['diskPath'] : "");
-                $DD_Model->setUrl(array_key_exists("url", $MappedData[$i]['decisions_documents']) ? $MappedData[$i]['decisions_documents']['url'] : "");
-                $DD_Model->setMimeType(array_key_exists("mimeType", $MappedData[$i]['decisions_documents']) ? $MappedData[$i]['decisions_documents']['mimeType'] : "");
-                $DD_Model->setLanguage(array_key_exists("language", $MappedData[$i]['decisions_documents']) ? $MappedData[$i]['decisions_documents']['language'] : "");
-                $DD_Model->setFilename(array_key_exists("language", $MappedData[$i]['decisions_documents']) ? $MappedData[$i]['decisions_documents']['filename'] : "");
-
-                $DD_Model->save();
-
-
-                $DK_Model = new DecisionsKeywords();
-
-                $DK_Model->setId(array_key_exists("id", $MappedData[$i]['decisions_keywords']) ? $MappedData[$i]['decisions_keywords']['id'] : "");
-                $DK_Model->setDecisionId(array_key_exists("decision_id", $MappedData[$i]['decisions_keywords']) ? $MappedData[$i]['decisions_keywords']['decision_id'] : "");
-                $DK_Model->setNamespace(array_key_exists("namespace", $MappedData[$i]['decisions_keywords']) ? $MappedData[$i]['decisions_keywords']['namespace'] : "");
-                $DK_Model->setTerm(array_key_exists("term", $MappedData[$i]['decisions_keywords']) ? $MappedData[$i]['decisions_keywords']['term'] : "");
-
-                $DK_Model->save();
-
-
-                $DL_Model = new DecisionsLongtitle();
-
-                $DL_Model->setId(array_key_exists("id", $MappedData[$i]['decisions_longtitle']) ? $MappedData[$i]['decisions_longtitle']['id'] : "");
-                $DL_Model->setDecisionId(array_key_exists("decision_id", $MappedData[$i]['decisions_longtitle']) ? $MappedData[$i]['decisions_longtitle']['decision_id'] : "");
-                $DL_Model->setLanguage(array_key_exists("language", $MappedData[$i]['decisions_longtitle']) ? $MappedData[$i]['decisions_longtitle']['language'] : "");
-                $DL_Model->setLongTitle(array_key_exists("long_title", $MappedData[$i]['decisions_longtitle']) ? $MappedData[$i]['decisions_longtitle']['long_title'] : "");
-
-                $DL_Model->save();
-
-
-                $DS_Model = new DecisionsSummary();
-
-                $DS_Model->setId(array_key_exists("id", $MappedData[$i]['decisions_summary']) ? $MappedData[$i]['decisions_summary']['id'] : "");
-                $DS_Model->setDecisionId(array_key_exists("decision_id", $MappedData[$i]['decisions_summary']) ? $MappedData[$i]['decisions_summary']['decision_id'] : "");
-                $DS_Model->setLanguage(array_key_exists("language", $MappedData[$i]['decisions_summary']) ? $MappedData[$i]['decisions_summary']['language'] : "");
-                $DS_Model->setSummary(array_key_exists("summary", $MappedData[$i]['decisions_summary']) ? $MappedData[$i]['decisions_summary']['summary'] : "");
-
-                $DS_Model->save();
-
-
-                $DT_Model = new DecisionsTitle();
-
-                $DT_Model->setId(array_key_exists("id", $MappedData[$i]['decisions_title']) ? $MappedData[$i]['decisions_title']['id'] : "");
-                $DT_Model->setDecisionId(array_key_exists("decision_id", $MappedData[$i]['decisions_title']) ? $MappedData[$i]['decisions_title']['decision_id'] : "");
-                $DT_Model->setLanguage(array_key_exists("language", $MappedData[$i]['decisions_title']) ? $MappedData[$i]['decisions_title']['language'] : "");
-                $DT_Model->setTitle(array_key_exists("title", $MappedData[$i]['decisions_title']) ? $MappedData[$i]['decisions_title']['title'] : "");
-
-                $DT_Model->save();
-
-            }
-
-            echo "\n\n DECISIONS COLLECTION DATA UPDATED! \n\n";
-
-        }
-
-
-        else if($coll_name === "Country Reports") {
-
-            $Model = new CountryReports();
-            $records = $Model::find();
-            $records->delete();
-
-            $Model2 = new CountryReportsDocuments();
-            $records2 = $Model2::find();
-            $records2->delete();
-
-
-            for ($i = 0, $iMax = count($MappedData); $i < $iMax; $i++) {
-
-                $CR_Model = new CountryReports();
-
-                $CR_Model->setId(array_key_exists("id", $MappedData[$i]['country_reports']) ? $MappedData[$i]['country_reports']['id'] : "");
-                $CR_Model->setTreaty(array_key_exists("treaty", $MappedData[$i]['country_reports']) ? $MappedData[$i]['country_reports']['treaty'] : "");
-                $CR_Model->setCountry(array_key_exists("country", $MappedData[$i]['country_reports']) ? $MappedData[$i]['country_reports']['country'] : "");
-                $CR_Model->setSubmission(array_key_exists("submission", $MappedData[$i]['country_reports']) ? $MappedData[$i]['country_reports']['submission'] : "");
-                $CR_Model->setUrl(array_key_exists("url", $MappedData[$i]['country_reports']) ? $MappedData[$i]['country_reports']['url'] : "");
-                $CR_Model->setAuthor(array_key_exists("author", $MappedData[$i]['country_reports']) ? $MappedData[$i]['country_reports']['author'] : "");
-                $CR_Model->setUpdated(array_key_exists("updated", $MappedData[$i]['country_reports']) ? $MappedData[$i]['country_reports']['updated'] : "");
-
-                $CR_Model->save();
-
-
-                $CRD_Model = new CountryReportsDocuments();
-
-                $CRD_Model->setId(array_key_exists("id", $MappedData[$i]['country_reports_documents']) ? $MappedData[$i]['country_reports_documents']['id'] : "");
-                $CRD_Model->setCountryReportId(array_key_exists("country_report_id", $MappedData[$i]['country_reports_documents']) ? $MappedData[$i]['country_reports_documents']['country_report_id'] : "");
-                $CRD_Model->setDiskPath(array_key_exists("diskPath", $MappedData[$i]['country_reports_documents']) ? $MappedData[$i]['country_reports_documents']['diskPath'] : "");
-                $CRD_Model->setUrl(array_key_exists("url", $MappedData[$i]['country_reports_documents']) ? $MappedData[$i]['country_reports_documents']['url'] : "");
-                $CRD_Model->setMimeType(array_key_exists("mimeType", $MappedData[$i]['country_reports_documents']) ? $MappedData[$i]['country_reports_documents']['mimeType'] : "");
-                $CRD_Model->setLanguage(array_key_exists("language", $MappedData[$i]['country_reports_documents']) ? $MappedData[$i]['country_reports_documents']['language'] : "");
-                $CRD_Model->setFileName(array_key_exists("filename", $MappedData[$i]['country_reports_documents']) ? $MappedData[$i]['country_reports_documents']['filename'] : "");
-
-                $CRD_Model->save();
-
-
-                $CRT_Model = new CountryReportsTitle();
-
-                $CRT_Model->setId(array_key_exists("id", $MappedData[$i]['country_reports_title']) ? $MappedData[$i]['country_reports_title']['id'] : "");
-                $CRT_Model->setCountryReportId(array_key_exists("country_report_id", $MappedData[$i]['country_reports_title']) ? $MappedData[$i]['country_reports_title']['country_report_id'] : "");
-                $CRT_Model->setLanguage(array_key_exists("language", $MappedData[$i]['country_reports_title']) ? $MappedData[$i]['country_reports_title']['language'] : "");
-                $CRT_Model->setTitle(array_key_exists("title", $MappedData[$i]['country_reports_title']) ? $MappedData[$i]['country_reports_title']['title'] : "");
-
-                $CRT_Model->save();
-
-            }
-
-            echo "\n\n COUNTRY REPORTS COLLECTION DATA UPDATED! \n\n";
-
-        }
-
-
-
-        else if($coll_name === "General Documents") {
-            $Model = new GeneralDocuments();
-            $records = $Model::find();
-            $records->delete();
-
-
-            for ($i = 0, $iMax = count($MappedData); $i < $iMax; $i++) {
-
-                $GD_Model = new GeneralDocuments();
-
-                $GD_Model->setId(array_key_exists("id", $MappedData[$i]['general_documents']) ? $MappedData[$i]['general_documents']['id'] : "");
-                $GD_Model->setTitle(array_key_exists("title", $MappedData[$i]['general_documents']) ? $MappedData[$i]['general_documents']['title'] : "");
-                $GD_Model->setAuthor(array_key_exists("author", $MappedData[$i]['general_documents']) ? $MappedData[$i]['general_documents']['author'] : "");
-                $GD_Model->setPublisher(array_key_exists("publisher", $MappedData[$i]['general_documents']) ? $MappedData[$i]['general_documents']['publisher'] : "");
-                $GD_Model->setUrl(array_key_exists("url", $MappedData[$i]['general_documents']) ? $MappedData[$i]['general_documents']['url'] : "");
-                $GD_Model->setDateIssued(array_key_exists("date_issued", $MappedData[$i]['general_documents']) ? $MappedData[$i]['general_documents']['date_issued'] : "");
-                $GD_Model->setDateAvailable(array_key_exists("date_available", $MappedData[$i]['general_documents']) ? $MappedData[$i]['general_documents']['date_available'] : "");
-                $GD_Model->setDateAccessioned(array_key_exists("available", $MappedData[$i]['general_documents']) ? $MappedData[$i]['general_documents']['available'] : "");
-                $GD_Model->setLanguageIso(array_key_exists("language_iso", $MappedData[$i]['general_documents']) ? $MappedData[$i]['general_documents']['language_iso'] : "");
-                $GD_Model->setUpdated(array_key_exists("updated", $MappedData[$i]['general_documents']) ? $MappedData[$i]['general_documents']['updated'] : "");
-
-                $GD_Model->save();
-
-            }
-
-            echo "\n\n GENERAL DOCUMENTS COLLECTION DATA UPDATED! \n\n";
-
-
-        }
-
-
-        else if($coll_name === "Library Catalog") {
-            $Model = new LibraryCatalog();
-            $records = $Model::find();
-            $records->delete();
-
-            for ($i = 0, $iMax = count($MappedData); $i < $iMax; $i++) {
-
-                $LC_Model = new LibraryCatalog();
-
-                $LC_Model->setId(array_key_exists("id", $MappedData[$i]['library_catalog']) ? $MappedData[$i]['library_catalog']['id'] : "");
-                $LC_Model->setTitle(array_key_exists("title", $MappedData[$i]['library_catalog']) ? $MappedData[$i]['library_catalog']['title'] : "");
-                $LC_Model->setAuthor(array_key_exists("author", $MappedData[$i]['library_catalog']) ? $MappedData[$i]['library_catalog']['author'] : "");
-                $LC_Model->setPublisher(array_key_exists("publisher", $MappedData[$i]['library_catalog']) ? $MappedData[$i]['library_catalog']['publisher'] : "");
-                $LC_Model->setContributor(array_key_exists("contributor", $MappedData[$i]['library_catalog']) ? $MappedData[$i]['library_catalog']['contributor'] : "");
-                $LC_Model->setDateIssued(array_key_exists("date_issued", $MappedData[$i]['library_catalog']) ? $MappedData[$i]['library_catalog']['date_issued'] : "");
-                $LC_Model->setDateAccessioned(array_key_exists("date_accessioned", $MappedData[$i]['library_catalog']) ? $MappedData[$i]['library_catalog']['date_accessioned'] : "");
-                $LC_Model->setDateAvailable(array_key_exists("date_available", $MappedData[$i]['library_catalog']) ? $MappedData[$i]['library_catalog']['date_available'] : "");
-                $LC_Model->setDate(array_key_exists("date", $MappedData[$i]['library_catalog']) ? $MappedData[$i]['library_catalog']['date'] : "");
-                $LC_Model->setVersion(array_key_exists("version", $MappedData[$i]['library_catalog']) ? $MappedData[$i]['library_catalog']['version'] : "");
-                $LC_Model->setLanguage(array_key_exists("language", $MappedData[$i]['library_catalog']) ? $MappedData[$i]['library_catalog']['language'] : "");
-                $LC_Model->setCategory(array_key_exists("category", $MappedData[$i]['library_catalog']) ? $MappedData[$i]['library_catalog']['category'] : "");
-                $LC_Model->setClass(array_key_exists("class", $MappedData[$i]['library_catalog']) ? $MappedData[$i]['library_catalog']['class'] : "");
-                $LC_Model->setWebsite(array_key_exists("website", $MappedData[$i]['library_catalog']) ? $MappedData[$i]['library_catalog']['website'] : "");
-                $LC_Model->setUri(array_key_exists("uri", $MappedData[$i]['library_catalog']) ? $MappedData[$i]['library_catalog']['uri'] : "");
-                $LC_Model->setPlace(array_key_exists("place", $MappedData[$i]['library_catalog']) ? $MappedData[$i]['library_catalog']['place'] : "");
-                $LC_Model->setNotes(array_key_exists("notes", $MappedData[$i]['library_catalog']) ? $MappedData[$i]['library_catalog']['notes'] : "");
-                $LC_Model->setInmagic(array_key_exists("inmagic", $MappedData[$i]['library_catalog']) ? $MappedData[$i]['library_catalog']['inmagic'] : "");
-                $LC_Model->setUpdated(array_key_exists("updated", $MappedData[$i]['library_catalog']) ? $MappedData[$i]['library_catalog']['updated'] : "");
-
-                $LC_Model->save();
-
-
-            }
-
-            echo "\n\n LIBRARY CATALOG COLLECTION DATA UPDATED! \n\n";
-
-
-        }
-
-
-        else if($coll_name === "Publications") {
-            $Model = new Publications();
-            $records = $Model::find();
-            $records->delete();
-
-            for ($i = 0, $iMax = count($MappedData); $i < $iMax; $i++) {
-
-                $Pub_Model = new Publications();
-
-                $Pub_Model->setId(array_key_exists("id", $MappedData[$i]['publications']) ? $MappedData[$i]['publications']['id'] : "");
-                $Pub_Model->setTitle(array_key_exists("title", $MappedData[$i]['publications']) ? $MappedData[$i]['publications']['title'] : "");
-                $Pub_Model->setTitleEs(array_key_exists("title_es", $MappedData[$i]['publications']) ? $MappedData[$i]['publications']['title_es'] : "");
-                $Pub_Model->setTitleFr(array_key_exists("title_fr", $MappedData[$i]['publications']) ? $MappedData[$i]['publications']['title_fr'] : "");
-                $Pub_Model->setAuthor(array_key_exists("author", $MappedData[$i]['publications']) ? $MappedData[$i]['publications']['author'] : "");
-                $Pub_Model->setPublisher(array_key_exists("publisher", $MappedData[$i]['publications']) ? $MappedData[$i]['publications']['publisher'] : "");
-                $Pub_Model->setContributor(array_key_exists("contributor", $MappedData[$i]['publications']) ? $MappedData[$i]['publications']['contributor'] : "");
-                $Pub_Model->setVersion(array_key_exists("version", $MappedData[$i]['publications']) ? $MappedData[$i]['publications']['version'] : "");
-                $Pub_Model->setLanguage(array_key_exists("language", $MappedData[$i]['publications']) ? $MappedData[$i]['publications']['language'] : "");
-                $Pub_Model->setDescriptors(array_key_exists("descriptors", $MappedData[$i]['publications']) ? $MappedData[$i]['publications']['descriptors'] : "");
-                $Pub_Model->setCategory(array_key_exists("category", $MappedData[$i]['publications']) ? $MappedData[$i]['publications']['category'] : "");
-                $Pub_Model->setClass(array_key_exists("class", $MappedData[$i]['publications']) ? $MappedData[$i]['publications']['class'] : "");
-                $Pub_Model->setIsPartOfSeries(array_key_exists("is_part_of_series", $MappedData[$i]['publications']) ? $MappedData[$i]['publications']['is_part_of_series'] : "");
-                $Pub_Model->setSeries(array_key_exists("series", $MappedData[$i]['publications']) ? $MappedData[$i]['publications']['series'] : "");
-                $Pub_Model->setType(array_key_exists("type", $MappedData[$i]['publications']) ? $MappedData[$i]['publications']['type'] : "");
-                $Pub_Model->setIsbn(array_key_exists("isbn", $MappedData[$i]['publications']) ? $MappedData[$i]['publications']['isbn'] : "");
-                $Pub_Model->setRights(array_key_exists("rights", $MappedData[$i]['publications']) ? $MappedData[$i]['publications']['rights'] : "");
-                $Pub_Model->setPlace(array_key_exists("place", $MappedData[$i]['publications']) ? $MappedData[$i]['publications']['place'] : "");
-                $Pub_Model->setWebsite(array_key_exists("website", $MappedData[$i]['publications']) ? $MappedData[$i]['publications']['website'] : "");
-                $Pub_Model->setUri(array_key_exists("uri", $MappedData[$i]['publications']) ? $MappedData[$i]['publications']['uri'] : "");
-                $Pub_Model->setDate(array_key_exists("date", $MappedData[$i]['publications']) ? $MappedData[$i]['publications']['date'] : "");
-                $Pub_Model->setDateIssued(array_key_exists("date_issued", $MappedData[$i]['publications']) ? $MappedData[$i]['publications']['date_issued'] : "");
-                $Pub_Model->setDateAvailable(array_key_exists("date_available", $MappedData[$i]['publications']) ? $MappedData[$i]['publications']['date_available'] : "");
-                $Pub_Model->setDateAccessioned(array_key_exists("date_accessioned", $MappedData[$i]['publications']) ? $MappedData[$i]['publications']['date_accessioned'] : "");
-                $Pub_Model->setUpdated(array_key_exists("updated", $MappedData[$i]['publications']) ? $MappedData[$i]['publications']['updated'] : "");
-
-                $Pub_Model->save();
-
-            }
-
-            echo "\n\n PUBLICATIONS COLLECTION DATA UPDATED! \n\n";
-
-
         }
 
     }
@@ -565,9 +552,6 @@ class ImportController extends BaseController{
 
                     $res3 = $this->dspace->get($url3, ['verify' => false, 'headers' => $headers]);
                     $md_data = json_decode($res3->getBody(), true);
-                    if (!$md_data) {
-                        echo "\n\n" . $Collection_UUID . " is empty.\n\n";
-                    }
 
 
                     $MDD = array_merge($MDD, $md_data);
@@ -579,6 +563,9 @@ class ImportController extends BaseController{
 
                 }
 
+                if (!$data[$i]) {
+                    echo "\n\n" . $Collection_UUID . " is empty.\n\n";
+                }
 
 //                echo "\n\n >>>>>>>> THIS IS SPECIFIC MEETING DOCUMENTS DATA FOR " . $coll_name . " entry no. " . $i . " with uuid " . $Collection_UUID . " <<<<<<<<<<<\n\n";
 //                print_r($data[$i]);
