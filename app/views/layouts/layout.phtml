@@ -152,32 +152,32 @@
         $Collections = new Collections();
 
         if ($title === "Meetings") {
-            $records = (new Meetings())::count();
-            $updated = ((new Meetings())::findFirst("id = '1'"))->updated;
+            $records = (new Meetings())->count();
+            $updated = (new Meetings())->findFirst("id = '1'")->updated;
             $link = $base_url . "import/mapdspace/1";
         }elseif ($title === "Contacts") {
-            $records = (new Contacts())::count();
-            $updated = ((new Contacts())::findFirst("id = '1'"))->updated;
+            $records = (new Contacts())->count();
+            $updated = (new Contacts())->findFirst("id = '1'")->updated;
             $link = $base_url . "import/mapdspace/2";
         }elseif ($title === "Decisions") {
-            $records = (new Decisions())::count();
-            $updated = ((new Decisions())::findFirst("id = '1'"))->updated;
+            $records = (new Decisions())->count();
+            $updated = (new Decisions())->findFirst("id = '1'")->updated;
             $link = $base_url . "import/mapdspace/3";
         }elseif ($title === "Country Reports") {
-            $records = (new CountryReports())::count();
-            $updated = ((new CountryReports())::findFirst("id = '1'"))->updated;
+            $records = (new CountryReports())->count();
+            $updated = (new CountryReports())->findFirst("id = '1'")->updated;
             $link = $base_url . "import/mapdspace/4";
         }elseif ($title === "General Documents") {
-            $records = (new GeneralDocuments())::count();
-            $updated = ((new GeneralDocuments())::findFirst("id = '1'"))->updated;
+            $records = (new GeneralDocuments())->count();
+            $updated = (new GeneralDocuments())->findFirst("id = '1'")->updated;
             $link = $base_url . "import/mapdspace/5";
         }elseif ($title === "Library Catalog") {
-            $records = (new LibraryCatalog())::count();
-            $updated = ((new LibraryCatalog())::findFirst("id = '1'"))->updated;
+            $records = (new LibraryCatalog())->count();
+            $updated = (new LibraryCatalog())->findFirst("id = '1'")->updated;
             $link = $base_url . "import/mapdspace/6";
         }elseif ($title === "Publications") {
-            $records = (new Publications())::count();
-            $updated = ((new Publications())::findFirst("id = '1'"))->updated;
+            $records = (new Publications())->count();
+            $updated = (new Publications())->findFirst("id = '1'")->updated;
             $link = $base_url . "import/mapdspace/7";
         }
 
