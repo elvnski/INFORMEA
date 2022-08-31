@@ -20,19 +20,19 @@ class UserController extends BaseController
     }
 
     public function indexAction()
-    {       
+    {
         $this->view->disableLevel(View::LEVEL_MAIN_LAYOUT);
 
         $auth = $this->session->get('auth');
 
        /* if($auth != null){
             if($auth['id'] != null){
-                $this->response->redirect("category/list/4"); 
+                $this->response->redirect("category/list/1");
                 $this->view->disable();
             }
-        } */       
-    }   
-	
+        } */
+    }
+
 	public function listAction()
     {       
         // Add some local CSS resources
@@ -483,7 +483,7 @@ class UserController extends BaseController
 					     $this->_registerSession($dspaceToken);                   
 						
 					 }
-					$this->response->redirect("category/list/4"); 
+					$this->response->redirect("category/list/1");
 					$this->view->disable();
 
 					return;
@@ -505,7 +505,7 @@ class UserController extends BaseController
 					$users->save();
 					
 				 
-					$this->response->redirect("category/list/4"); 
+					$this->response->redirect("category/list/1");
 					$this->view->disable();
 
 					return; 
