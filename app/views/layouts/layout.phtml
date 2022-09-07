@@ -40,9 +40,9 @@
         <!-- Logo -->
         <a href="6" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
-            <span class="logo-mini"><b>A</b>LT</span>
+            <span class="logo-mini" style="font-size: 24px;"><b>UN</b></span>
             <!-- logo for regular state and mobile devices -->
-            <span class="logo-lg"><b>Infor</b>MEA</span>
+            <span class="logo-lg" style="font-size: 24px;"><b>Infor</b>MEA</span>
         </a>
 
         <!-- Header Navbar: style can be found in header.less -->
@@ -84,241 +84,262 @@
 
         </nav>
     </header>
-      <!-- Left side column. contains the logo and sidebar -->
-      <aside class="main-sidebar">
+    <!-- Left side column. contains the logo and sidebar -->
+    <aside class="main-sidebar">
         <!-- sidebar: style can be found in sidebar.less -->
-        <section class="sidebar">         
-          
-          <!-- sidebar menu: : style can be found in sidebar.less -->
-          <ul class="sidebar-menu">
-            <li class="header">MAIN NAVIGATION</li>
-            <li class="active treeview">
-              <a href="#">
-                <i class="fa fa-dashboard"></i> <span>Document Categories</span> <i class="fa fa-angle-left pull-right"></i>
-              </a>
-              <ul class="treeview-menu" style="cursor: pointer;">
-                  <li class="<?PHP echo $class;?>"><?= $this->tag->linkTo("category/list/2", "<i class='fa fa-circle-o'></i> Contacts"); ?></li>
-                  <li class="<?PHP echo $class;?>"><?= $this->tag->linkTo("category/list/1", "<i class='fa fa-circle-o'></i> Country Reports"); ?></li>
-                  <li class="<?PHP echo $class;?>"><?= $this->tag->linkTo("category/list/3", "<i class='fa fa-circle-o'></i> Decisions"); ?></li>
-                  <li class="<?PHP echo $class;?>"><?= $this->tag->linkTo("category/list/5", "<i class='fa fa-circle-o'></i> General Documents"); ?></li>
-                  <li class="<?PHP echo $class;?>"><?= $this->tag->linkTo("category/list/6", "<i class='fa fa-circle-o'></i> Library Catalog"); ?></li>
-                  <li class="<?PHP echo $class;?>"><?= $this->tag->linkTo("category/list/4", "<i class='fa fa-circle-o'></i> Meetings"); ?></li>
-                  <li class="<?PHP echo $class;?>"><?= $this->tag->linkTo("category/list/7", "<i class='fa fa-circle-o'></i> Publications"); ?></li>
-              </ul>
-            </li>
-		<?PHP
-			if(in_array_r('Administrator', $this->session->get('auth')['user_type']))
-			{ 
-			?>
-			<li class="active treeview">
-              <a href="#">
-                <i class="fa fa-dashboard"></i> <span>Admin</span> <i class="fa fa-angle-left pull-right"></i>
-              </a>
-              <ul class="treeview-menu">
-                <li class="<?PHP echo $class;?>"><?= $this->tag->linkTo("user/list/", "<i class='fa fa-circle-o'></i> Users"); ?></li>
-              </ul>
-            </li>
-			<?PHP } ?>
-            <!--li>
-              <a href="pages/widgets.html">
-                <i class="fa fa-th"></i> <span>Search</span>
-              </a>
-            </li-->            
-          </ul>
+        <section class="sidebar">
+
+            <!-- sidebar menu: : style can be found in sidebar.less -->
+            <ul class="sidebar-menu">
+                <li class="header">MAIN NAVIGATION</li>
+                <li class="active treeview">
+                    <a href="#">
+                        <i class="fa fa-dashboard"></i> <span>Document Categories</span> <i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu" style="cursor: pointer;">
+                        <li class="<?PHP echo $class;?>"><?= $this->tag->linkTo("category/list/2", "<i class='fa fa-circle-o'></i> Contacts"); ?></li>
+                        <li class="<?PHP echo $class;?>"><?= $this->tag->linkTo("category/list/1", "<i class='fa fa-circle-o'></i> Country Reports"); ?></li>
+                        <li class="<?PHP echo $class;?>"><?= $this->tag->linkTo("category/list/3", "<i class='fa fa-circle-o'></i> Decisions"); ?></li>
+                        <li class="<?PHP echo $class;?>"><?= $this->tag->linkTo("category/list/5", "<i class='fa fa-circle-o'></i> General Documents"); ?></li>
+                        <li class="<?PHP echo $class;?>"><?= $this->tag->linkTo("category/list/6", "<i class='fa fa-circle-o'></i> Library Catalog"); ?></li>
+                        <li class="<?PHP echo $class;?>"><?= $this->tag->linkTo("category/list/4", "<i class='fa fa-circle-o'></i> Meetings"); ?></li>
+                        <li class="<?PHP echo $class;?>"><?= $this->tag->linkTo("category/list/7", "<i class='fa fa-circle-o'></i> Publications"); ?></li>
+                    </ul>
+                </li>
+                <?PHP
+                if(in_array_r('Administrator', $this->session->get('auth')['user_type']))
+                {
+                    ?>
+                    <li class="active treeview">
+                        <a href="#">
+                            <i class="fa fa-dashboard"></i> <span>Admin</span> <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li class="<?PHP echo $class;?>"><?= $this->tag->linkTo("user/list/", "<i class='fa fa-circle-o'></i> Users"); ?></li>
+                        </ul>
+                    </li>
+                <?PHP } ?>
+                <!--li>
+                  <a href="pages/widgets.html">
+                    <i class="fa fa-th"></i> <span>Search</span>
+                  </a>
+                </li-->
+            </ul>
         </section>
         <!-- /.sidebar -->
-      </aside>
+    </aside>
 
-      <!-- Content Wrapper. Contains page content -->
-      <div class="content-wrapper">
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
-          <h1 style="font-size: 36px">
-            <?= $title ?>
-          </h1>
+            <h1 style="font-size: 36px">
+                <?= $title ?>
+            </h1>
 
 
-        <?PHP
+            <?PHP
 
-        $whitelist = array('127.0.0.1', '::1');
+//            $whitelist = array('127.0.0.1', '::1');
+//            if(in_array($_SERVER['REMOTE_ADDR'], $whitelist)){
+//                $base_url = 'http://localhost/informea/';
+//            } else {
+//                $base_url = 'https://staging1.unep.org/informea/';
+//            }
 
-        //checks the deployment environment
-        if(in_array($_SERVER['REMOTE_ADDR'], $whitelist)){
-            $base_url = $this->local;
-        } else {
-            $base_url = $this->staging;
-        }
+            //checks the deployment environment and applies the appropriate url
+            function getAddress() {
+                $protocol = $_SERVER['HTTPS'] === 'on' ? 'https' : 'http';
+                return $protocol.'://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+            }
 
-        $Collections = new Collections();
+            $local = "localhost";
+            $staging = "staging1";
+            $prod = "apps1";
 
-        if ($title === "Meetings") {
-            $records = (new Meetings())->count();
-            $updated = (new Meetings())->findFirst("id = '1'")->updated;
-            $link = $base_url . "import/mapdspace/1";
-        }elseif ($title === "Contacts") {
-            $records = (new Contacts())->count();
-            $updated = (new Contacts())->findFirst("id = '1'")->updated;
-            $link = $base_url . "import/mapdspace/2";
-        }elseif ($title === "Decisions") {
-            $records = (new Decisions())->count();
-            $updated = (new Decisions())->findFirst("id = '1'")->updated;
-            $link = $base_url . "import/mapdspace/3";
-        }elseif ($title === "Country Reports") {
-            $records = (new CountryReports())->count();
-            $updated = (new CountryReports())->findFirst("id = '1'")->updated;
-            $link = $base_url . "import/mapdspace/4";
-        }elseif ($title === "General Documents") {
-            $records = (new GeneralDocuments())->count();
-            $updated = (new GeneralDocuments())->findFirst("id = '1'")->updated;
-            $link = $base_url . "import/mapdspace/5";
-        }elseif ($title === "Library Catalog") {
-            $records = (new LibraryCatalog())->count();
-            $updated = (new LibraryCatalog())->findFirst("id = '1'")->updated;
-            $link = $base_url . "import/mapdspace/6";
-        }elseif ($title === "Publications") {
-            $records = (new Publications())->count();
-            $updated = (new Publications())->findFirst("id = '1'")->updated;
-            $link = $base_url . "import/mapdspace/7";
-        }
-
-        ?>
+            if (strpos(getAddress(), $local) !== false) {
+                $base_url = 'http://localhost/informea/';
+            }
+            else if (strpos(getAddress(), $staging) !== false){
+                $base_url = 'https://staging1.unep.org/informea/';
+            }
+            else if (strpos(getAddress(), $prod) !== false){
+                $base_url = 'https://apps1.unep.org/informea/';
+            }
 
 
-        <?PHP
-        if($title !== "Users"){
-        ?>
-            <span style="display: flex; padding-top: 16px; padding-bottom: 16px;">
+
+
+            $Collections = new Collections();
+
+            if ($title === "Meetings") {
+                $records = (new Meetings())->count();
+                $updated = (new Meetings())->findFirst("id = '1'")->updated;
+                $link = $base_url . "import/mapdspace/1";
+            }elseif ($title === "Contacts") {
+                $records = (new Contacts())->count();
+                $updated = (new Contacts())->findFirst("id = '1'")->updated;
+                $link = $base_url . "import/mapdspace/2";
+            }elseif ($title === "Decisions") {
+                $records = (new Decisions())->count();
+                $updated = (new Decisions())->findFirst("id = '1'")->updated;
+                $link = $base_url . "import/mapdspace/3";
+            }elseif ($title === "Country Reports") {
+                $records = (new CountryReports())->count();
+                $updated = (new CountryReports())->findFirst("id = '1'")->updated;
+                $link = $base_url . "import/mapdspace/4";
+            }elseif ($title === "General Documents") {
+                $records = (new GeneralDocuments())->count();
+                $updated = (new GeneralDocuments())->findFirst("id = '1'")->updated;
+                $link = $base_url . "import/mapdspace/5";
+            }elseif ($title === "Library Catalog") {
+                $records = (new LibraryCatalog())->count();
+                $updated = (new LibraryCatalog())->findFirst("id = '1'")->updated;
+                $link = $base_url . "import/mapdspace/6";
+            }elseif ($title === "Publications") {
+                $records = (new Publications())->count();
+                $updated = (new Publications())->findFirst("id = '1'")->updated;
+                $link = $base_url . "import/mapdspace/7";
+            }
+
+            ?>
+
+
+            <?PHP
+            if($title !== "Users"){
+                ?>
+                <span style="display: flex; padding-top: 16px; padding-bottom: 16px;">
                 Records : <?= $records . "  |  " ?>
                 Updated : <?= $updated ?>
             </span>
 
-        <button type = "button"
-                style= "-webkit-appearance: none;
+                <button type = "button"
+                        style= "-webkit-appearance: none;
                         -moz-appearance: none;
                         appearance: none;
                         background-color: #3e7fa9;
                         color: #ffffff;
                         border-color: transparent;
                         padding: 3px 6px;"
-                onclick=" window.open('<?= $link ?>') "> Update Collection </button>
-        <?PHP } ?>
+                        onclick=" window.open('<?= $link ?>') "> Update Collection </button>
+            <?PHP } ?>
 
 
-<!--          <ol class="breadcrumb">-->
-<!--            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>-->
-<!--            <li class="active">Dashboard</li>-->
-<!--          </ol>-->
+            <!--          <ol class="breadcrumb">-->
+            <!--            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>-->
+            <!--            <li class="active">Dashboard</li>-->
+            <!--          </ol>-->
         </section>
 
         <!-- Main content -->
         <section class="content">
-          <?php print $this->getContent(); ?>
+            <?php print $this->getContent(); ?>
         </section>
-        
-      </div><!-- /.content-wrapper -->
 
-      <footer class="main-footer">
+    </div><!-- /.content-wrapper -->
+
+    <footer class="main-footer">
         <div class="pull-right hidden-xs">
-          <b>Version</b> 2.0
+            <b>Version 2.0</b>
         </div>
-        <strong>Copyright &copy; 2016 <a href="#">UNEP ICTU</a>.</strong> All rights reserved.
-      </footer>
+        <strong>Copyright &copy; 2022 <a href="#">UNEP ESS</a> </strong>
+    </footer>
 
-      
 
-    </div><!-- ./wrapper -->
 
-    <!-- jQuery 2.1.4 -->
-    <?= $this->tag->javascriptInclude("plugins/jQuery/jQuery-2.1.4.min.js") ?>
-    <!-- Bootstrap 3.3.5 -->
-    <?= $this->tag->javascriptInclude("bootstrap/js/bootstrap.min.js") ?>
-    <!-- SlimScroll -->
-    <?= $this->tag->javascriptInclude("plugins/slimScroll/jquery.slimscroll.min.js") ?>
-    <!-- FastClick -->
-    <?= $this->tag->javascriptInclude("plugins/fastclick/fastclick.min.js") ?>
-    <!-- Sparkline -->
-    <?= $this->tag->javascriptInclude("plugins/sparkline/jquery.sparkline.min.js") ?>
-    <!-- AdminLTE App -->
-    <?= $this->tag->javascriptInclude("js/app.min.js") ?>
+</div><!-- ./wrapper -->
 
-    
+<!-- jQuery 2.1.4 -->
+<?= $this->tag->javascriptInclude("plugins/jQuery/jQuery-2.1.4.min.js") ?>
+<!-- Bootstrap 3.3.5 -->
+<?= $this->tag->javascriptInclude("bootstrap/js/bootstrap.min.js") ?>
+<!-- SlimScroll -->
+<?= $this->tag->javascriptInclude("plugins/slimScroll/jquery.slimscroll.min.js") ?>
+<!-- FastClick -->
+<?= $this->tag->javascriptInclude("plugins/fastclick/fastclick.min.js") ?>
+<!-- Sparkline -->
+<?= $this->tag->javascriptInclude("plugins/sparkline/jquery.sparkline.min.js") ?>
+<!-- AdminLTE App -->
+<?= $this->tag->javascriptInclude("js/app.min.js") ?>
 
-    <?php $this->assets->outputJs() ?>
 
-    <!-- AdminLTE for demo purposes -->
-    <?= $this->tag->javascriptInclude("js/demo.js") ?>
 
-    <!-- render custom javascript code -->
-    <?php $this->partial("shared/javascript", array('javascript' =>$javascript)); ?>
-    
-	<script type="text/javascript">
+<?php $this->assets->outputJs() ?>
+
+<!-- AdminLTE for demo purposes -->
+<?= $this->tag->javascriptInclude("js/demo.js") ?>
+
+<!-- render custom javascript code -->
+<?php $this->partial("shared/javascript", array('javascript' =>$javascript)); ?>
+
+<script type="text/javascript">
 
     function show_popup(title, body, footer, modalsize)
-		{
+    {
 
-			if (modalsize != null)
-			{
-				$('#default-modal .modal-dialog').addClass(modalsize);
-			}
-			else
-			{
-				$('#default-modal .modal-dialog').removeClass().addClass('modal-dialog');
-			}
+        if (modalsize != null)
+        {
+            $('#default-modal .modal-dialog').addClass(modalsize);
+        }
+        else
+        {
+            $('#default-modal .modal-dialog').removeClass().addClass('modal-dialog');
+        }
 
-			$('#default-modal .modal-title').html(title);
-			$('#default-modal .modal-body').html(body);
-			if (footer=="")
-			{
-				$('#default-modal .modal-footer').css({'display':'none'});
-			}
-			else
-			{
-				$('#default-modal .modal-footer').css({'display':'block'});
-				$('#default-modal .modal-footer').html(footer);
-			}
-			$('#default-modal').modal({backdrop:'static',keyboard:true});
-			$("html, body").animate({ scrollTop: 0 }, "slow");
-		}
-		</script>
-    <div class="modal fade" id="default-modal" style="display:none;"  tabindex='-1'>
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h4 class="modal-title"></h4>
-			</div>
-			<div class="modal-body">
+        $('#default-modal .modal-title').html(title);
+        $('#default-modal .modal-body').html(body);
+        if (footer=="")
+        {
+            $('#default-modal .modal-footer').css({'display':'none'});
+        }
+        else
+        {
+            $('#default-modal .modal-footer').css({'display':'block'});
+            $('#default-modal .modal-footer').html(footer);
+        }
+        $('#default-modal').modal({backdrop:'static',keyboard:true});
+        $("html, body").animate({ scrollTop: 0 }, "slow");
+    }
+</script>
+<div class="modal fade" id="default-modal" style="display:none;"  tabindex='-1'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title"></h4>
+            </div>
+            <div class="modal-body">
 
-			</div>
-			<div class="modal-footer">
+            </div>
+            <div class="modal-footer">
 
-			</div>	
-			<div id="modal-fade"></div>			
-			<div id="modal-spinner-modal" style="display:none;">
-				<img id="modal-loader" src="../../public/img/loading.gif" />
-			</div>
-		</div><!-- /.modal-content -->
-	</div><!-- /.modal-dialog -->
+            </div>
+            <div id="modal-fade"></div>
+            <div id="modal-spinner-modal" style="display:none;">
+                <img id="modal-loader" src="../../public/img/loading.gif" />
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
 </div>
 <div class="modal fade" id="default-modal" style="display:none;"  tabindex='-1'>
-	<div class="modal-dialog-custom" style="width:100%;">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h4 class="modal-title"></h4>
-			</div>
-			<div class="modal-body">
+    <div class="modal-dialog-custom" style="width:100%;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title"></h4>
+            </div>
+            <div class="modal-body">
 
-			</div>
-			<div class="modal-footer">
+            </div>
+            <div class="modal-footer">
 
-			</div>
-			<div id="modal-fade" class="page-fade"></div>
-			<div id="modal-spinner-modal" class="page-spinner-modal" >
-				<img id="modal-loader" src="../../public/img/loading.gif" />
-			</div>
-		</div><!-- /.modal-content -->
-	</div><!-- /.modal-dialog -->
+            </div>
+            <div id="modal-fade" class="page-fade"></div>
+            <div id="modal-spinner-modal" class="page-spinner-modal" >
+                <img id="modal-loader" src="../../public/img/loading.gif" />
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
 </div>
 
 <!--<div class="footer">-->
@@ -334,7 +355,7 @@
 <!--<div id="spinner-modal" class="page-spinner-modal">-->
 <!--	<img id="loader" src="../../public/img/loading.gif" />-->
 <!--</div>-->
-    
-    
-  </body>
+
+
+</body>
 </html>

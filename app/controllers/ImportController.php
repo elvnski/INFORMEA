@@ -491,7 +491,7 @@ class ImportController extends BaseController{
             if ($coll_data[$i]['name'] === $coll_name) {
                 $CollectionDetails[$j]['name'] = $coll_name . " no. " . $i;
                 $CollectionDetails[$j]['uuid'] = $coll_data[$i]['uuid'];
-                echo "\n\n Found the collection name on index " . $i . " !!!! \n";
+                echo "\n\n Found the collection name on index " . $i . ". \n";
                 echo "\n The collection has uuid " . $CollectionDetails[$j]['uuid'] . "\n\n";
                 $j++;
 
@@ -580,7 +580,7 @@ class ImportController extends BaseController{
                 if (!$data[$i]) {
                     echo "\n\n" . $Collection_UUID . " is empty.\n\n";
                 } else {
-                    echo "\n>>>>>>>> FOUND THE SPECIFIC COLLECTION DATA FOR " . $coll_name . " entry no. " . $i . " with uuid " . $Collection_UUID . " <<<<<<<<<<<\n\n";
+                    echo "\n\n>>>>>>>> FOUND THE SPECIFIC COLLECTION DATA FOR " . $coll_name . " entry no. " . $i . " with uuid " . $Collection_UUID . " <<<<<<<<<<<\n\n";
 
 //                    print_r($data[$i]);
 //                    echo "\n\n";
