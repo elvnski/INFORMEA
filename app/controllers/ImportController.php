@@ -101,9 +101,11 @@ class ImportController extends BaseController{
 
                 }
 
-                echo "\n\n MEETING DOCUMENTS COLLECTION DATA UPDATED! \n\n";
+                echo "Meeting Documents category has been successfully updated. \n";
 
-            } //Saving to contacts table
+            }
+
+            //Saving to contacts table
             else if ($coll_name === "Contacts") {
                 $Model = new Contacts();
                 $records = $Model::find();
@@ -147,7 +149,7 @@ class ImportController extends BaseController{
 
                 }
 
-                echo "\n\n CONTACTS COLLECTION DATA UPDATED! \n\n";
+                echo "Contacts category has been successfully updated \n";
 
 
             } else if ($coll_name === "Decisions") {
@@ -264,7 +266,7 @@ class ImportController extends BaseController{
 
                 }
 
-                echo "\n\n DECISIONS COLLECTION DATA UPDATED! \n\n";
+                echo "Decisions category has been successfully updated. \n";
 
             } else if ($coll_name === "Country Reports") {
 
@@ -316,7 +318,7 @@ class ImportController extends BaseController{
 
                 }
 
-                echo "\n\n COUNTRY REPORTS COLLECTION DATA UPDATED! \n\n";
+                echo "Country Reports category has been successfully updated. \n";
 
             } else if ($coll_name === "General Documents") {
                 $Model = new GeneralDocuments();
@@ -343,8 +345,7 @@ class ImportController extends BaseController{
 
                 }
 
-                echo "\n\n GENERAL DOCUMENTS COLLECTION DATA UPDATED! \n\n";
-
+                echo "General Documents category has been successfully updated. \n";
 
             } else if ($coll_name === "Library Catalog") {
                 $Model = new LibraryCatalog();
@@ -380,8 +381,7 @@ class ImportController extends BaseController{
 
                 }
 
-                echo "\n\n LIBRARY CATALOG COLLECTION DATA UPDATED! \n\n";
-
+                echo "Library Catalog category has been successfully updated. \n";
 
             } else if ($coll_name === "Publications") {
                 $Model = new Publications();
@@ -422,10 +422,11 @@ class ImportController extends BaseController{
 
                 }
 
-                echo "\n\n PUBLICATIONS COLLECTION DATA UPDATED! \n\n";
-
+                echo "Publications category has been successfully updated. \n";
 
             }
+
+            echo "\nPlease refresh the page to observe changes.";
         }
 
     }
@@ -491,8 +492,8 @@ class ImportController extends BaseController{
             if ($coll_data[$i]['name'] === $coll_name) {
                 $CollectionDetails[$j]['name'] = $coll_name . " no. " . $i;
                 $CollectionDetails[$j]['uuid'] = $coll_data[$i]['uuid'];
-                echo "\n\n Found the collection name on index " . $i . ". \n";
-                echo "\n The collection has uuid " . $CollectionDetails[$j]['uuid'] . "\n\n";
+//                echo "\n\n Found the collection name on index " . $i . ". \n";
+//                echo "\n The collection has uuid " . $CollectionDetails[$j]['uuid'] . "\n\n";
                 $j++;
 
             }
@@ -578,9 +579,9 @@ class ImportController extends BaseController{
                 $res2 = $this->dspace->get($url2, ['verify' => false, 'headers' => $headers]);
                 $data[$i] = json_decode($res2->getBody(), true);
                 if (!$data[$i]) {
-                    echo "\n\n" . $Collection_UUID . " is empty.\n\n";
+//                    echo "\n\n" . $Collection_UUID . " is empty.\n\n";
                 } else {
-                    echo "\n\n>>>>>>>> FOUND THE SPECIFIC COLLECTION DATA FOR " . $coll_name . " entry no. " . $i . " with uuid " . $Collection_UUID . " <<<<<<<<<<<\n\n";
+//                    echo "\n\n>>>>>>>> FOUND THE SPECIFIC COLLECTION DATA FOR " . $coll_name . " entry no. " . $i . " with uuid " . $Collection_UUID . " <<<<<<<<<<<\n\n";
 
 //                    print_r($data[$i]);
 //                    echo "\n\n";
@@ -608,9 +609,9 @@ class ImportController extends BaseController{
             }
         }
 
-        echo "\n\n ALL METADATA UUIDS FOR " . $coll_name . "\n";
-        print_r($meta_id);
-        echo "\n\n";
+//        echo "\n\n ALL METADATA UUIDS FOR " . $coll_name . "\n";
+//        print_r($meta_id);
+//        echo "\n\n";
 
 
         //Getting the metadata for every uuid in the collection

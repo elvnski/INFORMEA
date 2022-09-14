@@ -30,6 +30,9 @@
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+
+
+
     <![endif]-->
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
@@ -204,6 +207,13 @@
 
             ?>
 
+            <script >
+                function myFunction() {
+                    var myWindow = window.open("<?= $link ?>",'UATRpt','width=550,height=80,left=500,top=200,right=200,menubar=0,location=0,toolbar=0,resizable=0,status=1,scrollbars=1');
+                    myWindow.top.document.title="Updating collection... Please wait. This may take some time";
+                    self.opener.location.reload();
+                }
+            </script>
 
             <?PHP
             if($title !== "Users"){
@@ -211,7 +221,7 @@
                 <span style="display: flex; padding-top: 16px; padding-bottom: 16px;">
                 Records : <?= $records . "  |  " ?>
                 Updated : <?= $updated ?>
-            </span>
+                </span>
 
                 <button type = "button"
                         style= "-webkit-appearance: none;
@@ -221,7 +231,7 @@
                         color: #ffffff;
                         border-color: transparent;
                         padding: 3px 6px;"
-                        onclick=" window.open('<?= $link ?>') "> Update Collection </button>
+                        onclick=" myFunction() "> Update Collection </button>
             <?PHP } ?>
 
 
